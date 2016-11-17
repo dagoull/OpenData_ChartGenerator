@@ -1,4 +1,4 @@
-package ull.herramientas.OpenDataChartGenerator_ODCG;
+package ull.herramientas.opendatachartgenerator;
 
 /**
  * Hello world!
