@@ -1,4 +1,4 @@
-package ull.herramientas.OpenDataChartGenerator_ODCG;
+package ull.herramientas.opendatachartgenerator;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
