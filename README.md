@@ -2,7 +2,7 @@
 ## Proyecto final de la asignatura Laboratorio de Desarrollo y Herramientas.
 
 Inicialmente se da divido en 3 módulos de desarrollo.
-  * Input
+  * **Input**
 
     Vamos a desarrollar una aplicación que tendrá datos de entrada Datos Abiertos (Open Data), tales que los formatos de dichos ficheros van a ser - “.ASCII”, “.cvs”, “.xls”.
 
@@ -17,10 +17,10 @@ Inicialmente se da divido en 3 módulos de desarrollo.
      * Diagrama de Gantt.
      * Gráficos de barras (Histogramas).
      * Single valued (Termómetro, brújula, indicador de velocidad).
-  * Proceso
+  * **Proceso**
     * Normalizar y formalizar los datos a un formato comprensible para JFreeChart.
     * Gestión del procesamiento de la salida.
-  * Output
+  * **Output**
     * Gestiona la salida, teniendo en cuenta los procesos elegidos, y dar la posibilidad de volcar la información en distintos formatos, como, por ejemplo:
     	* Gráfico.
     	* Texto. (Posibilidad de informe PDF)
