@@ -16,7 +16,7 @@ public class GraficoDeBarras {
     public static void main(String[] args) {
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        System.out.println("hola taiga");
+        System.out.println("hola taig pues hora de nueveo");
         dataset.setValue(100, "2014", "Playa Jardín");
         dataset.setValue(500, "2015", "Playa Jardín");
         dataset.setValue(400, "2016", "Playa Jardín");
