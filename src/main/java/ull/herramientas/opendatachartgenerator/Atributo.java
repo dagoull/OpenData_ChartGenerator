@@ -36,6 +36,4 @@ public class Atributo {
 	public void setId(String id_) {
 		this.id_ = id_;
 	}
-
-
 }
