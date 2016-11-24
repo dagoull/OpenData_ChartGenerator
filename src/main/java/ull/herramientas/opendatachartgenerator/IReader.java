@@ -16,4 +16,7 @@ public interface IReader {
 
 	public ArrayList<Instancia> leerDatos(String string) throws MalformedURLException, IOException;
 
+	public String[] getNombres_atributos();
+
+
 }

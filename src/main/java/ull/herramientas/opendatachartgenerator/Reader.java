@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 public class Reader implements IReader{
 	private ArrayList<Instancia> instancias;
+	private String[] nombres_atributos;
 
 	public Reader()
 	{
@@ -25,7 +26,7 @@ public class Reader implements IReader{
 	@Override
 	public ArrayList<Instancia> leerTodo(InputStream is) {
 		Scanner rd = new Scanner(is);
-		String[] nombres_atributos = null;
+		nombres_atributos = null;
 		int i = 0;
 		while (rd.hasNextLine())
 		{
@@ -93,5 +94,24 @@ public class Reader implements IReader{
 
 	    return true;
 	}
+
+
+
+	/**
+	 * @return the nombres_atributos
+	 */
+	public String[] getNombres_atributos() {
+		return nombres_atributos;
+	}
+
+
+
+	/**
+	 * @param nombres_atributos the nombres_atributos to set
+	 */
+	public void setNombres_atributos(String[] nombres_atributos) {
+		this.nombres_atributos = nombres_atributos;
+	}
+
 
 }

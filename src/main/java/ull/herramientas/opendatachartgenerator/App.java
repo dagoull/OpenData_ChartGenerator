@@ -12,15 +12,12 @@ public class App {
 
 		IReader reader = new Reader();
 
-		ArrayList<Instancia> dataset = new ArrayList<Instancia>();
+	    Dataset dataset = new Dataset("http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv");
 
-		dataset = reader.leerDatos("http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv");
 
-		for (int i = 0; i<dataset.size(); i++)
-		{
-			for (int j = 0; j<dataset.get(i).size(); j++)
-				System.out.print(dataset.get(i).getIdItem(j)+ ", ");
-		}
+			for (int i = 0; i<dataset.numero_de_atributos(); i++)
+				System.out.print(dataset.getNombreAtributo(i) + ", ");
+
 
 
 		System.out.println(dataset.size());
