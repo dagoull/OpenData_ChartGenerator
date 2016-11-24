@@ -46,7 +46,7 @@ public class SalidaGraficosFrame
 	}
 
 	/**
-	 * Método para configurar y añadir los componentes a la ventana
+	 * \brief Método para configurar y añadir los componentes a la ventana
 	 */
 	private void initVentana()
 	{
@@ -65,7 +65,7 @@ public class SalidaGraficosFrame
 	}
 
 	/**
-	 * Método para configurar botón de generar
+	 * \brief Método para configurar botón de generar
 	 */
 	private void configBoton()
 	{
@@ -74,7 +74,7 @@ public class SalidaGraficosFrame
 	}
 
 	/**
-	 * Método para inicializar y configurar los radios.
+	 * \brief Método para inicializar y configurar los radios.
 	 */
 	private void initRadioButton()
 	{

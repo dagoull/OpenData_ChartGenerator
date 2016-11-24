@@ -24,7 +24,7 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 		configurarDataSet();
 	}
 	/**
-	 * Método configurar el DataSet
+	 * \brief Método configurar el DataSet
 	 */
 	private void configurarDataSet()
 	{
