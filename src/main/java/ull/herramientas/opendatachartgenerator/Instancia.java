@@ -7,7 +7,7 @@ public class Instancia {
 	 * ArrayList de tipo Atributo
 	 */
 	private ArrayList<Atributo> inst_;
-	
+
 	/**
 	 * Constructor que almacenará la instancia
 	 */
@@ -15,7 +15,13 @@ public class Instancia {
 		super();
 		this.inst_ = new ArrayList<Atributo>();
 	}
-	
+
+	public Instancia(Atributo[] atributos){
+		this.inst_ = new ArrayList<Atributo>();
+		for (int i = 0; i<atributos.length; i++)
+			inst_.add(atributos[i]);
+	}
+
 	/**
 	 * Metodo que retorna la instancia
 	 * @return
@@ -23,7 +29,7 @@ public class Instancia {
 	public ArrayList<Atributo> getInst_() {
 		return inst_;
 	}
-	
+
 	/**
 	 * Metodo que modifica la instancia
 	 * @param inst_
@@ -31,7 +37,7 @@ public class Instancia {
 	public void setInst_(ArrayList<Atributo> inst_) {
 		this.inst_ = inst_;
 	}
-	
+
 	/**
 	 * Metodo que añade un atributo a la instancia
 	 * @param A
@@ -39,7 +45,7 @@ public class Instancia {
 	public void addAtributo(Atributo A) {
 		inst_.add(A);
 	}
-	
+
 	/**
 	 * Metodo que borra un atributo de la instancia
 	 * @param A
@@ -47,7 +53,7 @@ public class Instancia {
 	public void removeAtributo(Atributo A) {
 		inst_.remove(A);
 	}
-	
+
 	/**
 	 * Metodo que retorna el valor de una posicion
 	 * de la instancia
@@ -57,7 +63,7 @@ public class Instancia {
 	public String getValorItem(int pos) {
 		return inst_.get(pos).getValor();
 	}
-	
+
 	/**
 	 * Metodo que modifica el valor de una posicion
 	 * de la instancia
@@ -67,7 +73,7 @@ public class Instancia {
 	public void setValorItem(int pos, String val) {
 		inst_.get(pos).setValor(val);
 	}
-	
+
 	/**
 	 * Metodo que retorna el id de una posicion
 	 * de la instancia
@@ -77,7 +83,7 @@ public class Instancia {
 	public String getIdItem(int pos) {
 		return inst_.get(pos).getId();
 	}
-	
+
 	/**
 	 * Metodo que modifica el id de una posicion
 	 * de la instancia
@@ -87,7 +93,7 @@ public class Instancia {
 	public void setIdItem(int pos, String i) {
 		inst_.get(pos).setId(i);
 	}
-	
+
 	/**
 	 * Metodo que retorna el tamaño
 	 * @return
