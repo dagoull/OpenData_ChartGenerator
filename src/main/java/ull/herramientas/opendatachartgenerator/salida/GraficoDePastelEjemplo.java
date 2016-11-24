@@ -21,7 +21,6 @@ public class GraficoDePastelEjemplo
 	         true,
 	         true,
 	         false);
-	 
 	        // Mostrar Grafico
 	        ChartFrame frame = new ChartFrame("JFreeChart", chart);
 	        frame.pack();
