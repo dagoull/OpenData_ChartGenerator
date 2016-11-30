@@ -113,5 +113,5 @@ public class Reader implements IReader{
 		this.nombres_atributos = nombres_atributos;
 	}
 
-
+	
 }

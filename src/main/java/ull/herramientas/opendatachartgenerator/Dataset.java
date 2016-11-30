@@ -78,5 +78,13 @@ public class Dataset {
 	{
 		return columnas[i];
 	}
+	
+	public ArrayList<String> getColumna(int index){
+		ArrayList<String> aux=new ArrayList<String>();
+		for(int i=0; i<rows.size(); i++){
+			aux.add(rows.get(i).getValorItem(index));
+		}
+		return aux;
+	}
 
 }
