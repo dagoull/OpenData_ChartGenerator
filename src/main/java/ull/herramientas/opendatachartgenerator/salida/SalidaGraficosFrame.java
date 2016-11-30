@@ -3,6 +3,7 @@ package ull.herramientas.opendatachartgenerator.salida;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -42,6 +43,7 @@ public class SalidaGraficosFrame
 	private void initComponet()
 	{
 		initRadioButton();
+		configBoton();
 		initVentana();
 	}
 
@@ -52,15 +54,15 @@ public class SalidaGraficosFrame
 	{
 		m_Ventana = new JFrame("Salida");
 		m_Ventana.getContentPane().setLayout(new BoxLayout(m_Ventana.getContentPane(), BoxLayout.Y_AXIS));
+		m_Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		m_Ventana.setLocationRelativeTo(null);
-		m_Ventana.setSize(400, 300);
+		m_Ventana.setSize(300, 200);
 		m_Ventana.setVisible(true);
 		m_Ventana.add(m_RBtnGraficoBarra);
 		m_Ventana.add(m_RBtnGraficoPastel);
 		m_Ventana.add(m_RBtnConsola);
 		m_Ventana.add(m_RBtnPDF);
-
-		configBoton();
+		
 		m_Ventana.add(m_BtnGenerar);
 	}
 
@@ -72,7 +74,27 @@ public class SalidaGraficosFrame
 		m_BtnGenerar = new JButton("Generar");
 		m_BtnGenerar.setVisible(true);
 	}
-
+	private List<List<String>> lista()
+	{
+		List<List<String>> lista = new ArrayList<>();
+		for (int i = 0; i <1; i++)
+		{
+			lista.add(new ArrayList<>());
+			for (int j = 0; j < 6; j++)
+			{
+				lista.get(i).add("Nombre"+j);
+			}
+		}
+		for (int i = 1; i <6; i++)
+		{
+			lista.add(new ArrayList<>());
+			for (int j = 0; j < 6; j++)
+			{
+				lista.get(i).add(""+j);
+			}
+		}
+		return lista;
+	}
 	/**
 	 * \brief Método para inicializar y configurar los radios.
 	 */
@@ -80,13 +102,14 @@ public class SalidaGraficosFrame
 	{
 		m_RBtnGraficoBarra = new JRadioButton("Gráfico de Barra");
 		m_RBtnGraficoBarra.setVisible(true);
+		
 		m_RBtnGraficoBarra.addActionListener(
 				new ActionListener()
 				{
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(new ArrayList<>()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(lista()));
 					}
 				}
 		);
@@ -99,7 +122,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(new ArrayList<>()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(lista()));
 					}
 				}
 		);
