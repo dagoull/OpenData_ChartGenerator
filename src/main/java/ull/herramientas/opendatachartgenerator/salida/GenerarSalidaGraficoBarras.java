@@ -19,20 +19,21 @@ import ull.herramientas.opendatachartgenerator.Instancia;
  */
 public class GenerarSalidaGraficoBarras implements IGenerarSalida
 { // ATRIBUTOS
-	private DefaultCategoryDataset m_dataset;
+	private DefaultCategoryDataset m_datasetChar;
 	private List<List<String>> m_lista;
-	private Dataset m_dataset_d;
+	private Dataset m_datasetN;
 	private JFreeChart m_salida;
 
 	// CONSTRUCTOR/ES Y METODOS
 	public GenerarSalidaGraficoBarras(List<List<String>> arrayList)
 	{
 		m_lista = arrayList;
-		configurarDataSet();
+		//configurarDataSet();
+		configurarDataSetPropio();
 	}
 	public GenerarSalidaGraficoBarras(Dataset a_data)
 	{
-		m_dataset_d= a_data;
+		m_datasetN= a_data;
 	}
 
 	/**
@@ -40,30 +41,31 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	 */
 	private void configurarDataSet()
 	{
-		m_dataset = new DefaultCategoryDataset();
+		m_datasetChar = new DefaultCategoryDataset();
 		for (int i = 0; i < m_lista.get(0).size(); i++)
 		{
-			m_dataset.addValue(i, "ayer", m_lista.get(0).get(i));
+			m_datasetChar.addValue(i, "ayer", m_lista.get(0).get(i));
 		}
 		for (int i = 1; i < m_lista.get(0).size(); i++)
 		{
 			for (int j = 0; j < m_lista.get(i).size(); j++)
 			{
-				m_dataset.addValue(j, "ayer", m_lista.get(i).get(j));
+				m_datasetChar.addValue(j, "ayer", m_lista.get(i).get(j));
 			}
 		}
 	}
 	//cambiar nombre de este método
 	private void configurarDataSetPropio()
 	{
-		m_dataset = new DefaultCategoryDataset();
-		String [] t_array= m_dataset_d.getColumnas();
+		m_datasetChar = new DefaultCategoryDataset();
+		String [] t_array= m_datasetN.getColumnas();
 		for (int i = 0; i < t_array.length; i++)
 		{
-			ArrayList<Instancia> t_a= m_dataset_d.getRows();
+			ArrayList<Instancia> t_a= m_datasetN.getRows();
 			for (int j = 0; j <t_a.size() ; j++)
 			{
-				
+				Instancia aInst = t_a.get(j);
+				m_datasetChar.addValue(Integer.parseInt(aInst.getValorItem(j)),m_datasetN.getNombreAtributo(j).toString(), t_array[i].toString());
 			}
 		}
 	}
@@ -72,7 +74,7 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	public JFreeChart salida()
 	{
 		m_salida = ChartFactory.createBarChart(
-				"Playas de Tenerife", "Playa", "Turistas", m_dataset, PlotOrientation.VERTICAL, true, false, false
+				"Playas de Tenerife", "Playa", "Turistas", m_datasetChar, PlotOrientation.VERTICAL, true, false, false
 		);
 		ChartFrame a = new ChartFrame("hola", m_salida);
 		a.setVisible(true);
