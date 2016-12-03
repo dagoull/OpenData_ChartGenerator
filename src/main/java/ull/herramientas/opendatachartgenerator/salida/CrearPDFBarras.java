@@ -13,7 +13,12 @@ import com.lowagie.text.pdf.DefaultFontMapper;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
-
+/**
+ * \class, Clase CrearPDFBarras
+ * \brief encargada de generar un documento pdf para un gráfico de barras
+ * \author Orlandy Ariel Sánchez A.
+ *
+ */
 public class CrearPDFBarras implements ICrearPDF
 {
 	private int m_ancho;
@@ -22,20 +27,26 @@ public class CrearPDFBarras implements ICrearPDF
 	private Document m_documento;
 	private PdfWriter m_escribe;
 	private String m_nombreFichero;
-	
+	/**
+	 * \brief Constructor
+	 * \param a_grafico, gráfico para imprimir en pdf
+	 * \param a_nombreFichero, ruta del archivo donde se guardará
+	 */
 	public CrearPDFBarras(JFreeChart a_grafico, String a_nombreFichero)
 	{
 		m_grafico = a_grafico;
 		m_nombreFichero = a_nombreFichero;
 		initComponent();
 	}
-
+	/**
+	 * \brief Método qeu inicializa los distintos atributos.
+	 */
 	private void initComponent()
 	{
 		m_ancho = 870;
 		m_alto = 500;
 		m_escribe = null;
-		m_documento = new Document(PageSize.A4.rotate());
+		m_documento = new Document(PageSize.A4.rotate());// rota la página para poder representar mejor el gráfico
 	}
 
 	@Override
