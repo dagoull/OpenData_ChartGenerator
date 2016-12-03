@@ -1,10 +1,6 @@
 package ull.herramientas.opendatachartgenerator.salida;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -25,7 +21,6 @@ import ull.herramientas.opendatachartgenerator.Instancia;
 public class GenerarSalidaGraficoBarras implements IGenerarSalida
 { // ATRIBUTOS
 	private DefaultCategoryDataset m_datasetChar;
-	private List<List<String>> m_lista;
 	private Dataset m_datasetN;
 	private JFreeChart m_salida;
 
@@ -33,44 +28,58 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	public GenerarSalidaGraficoBarras(Dataset a_data)
 	{
 		m_datasetN = a_data;
-		configurarDataSetPropio();
-	}
-
-	/**
-	 * \brief Método configurar el DataSet
-	 */
-
-	//cambiar nombre de este método
-	private void configurarDataSetPropio()
-	{
-		m_datasetChar = new DefaultCategoryDataset();
-		ArrayList<String> t_barrios= m_datasetN.getColumna(2);
 		
-		for (int i = 0; i < t_barrios.size(); i++)
+		configurarDatasetChart();
+		configuraSalida();
+		
+	}
+	private void configuraSalida()
+	{
+		m_salida = ChartFactory.createBarChart(
+				"Playas de Tenerife", "Playa", "Turistas", m_datasetChar, PlotOrientation.VERTICAL, true, false, false
+		);
+	}
+	/**
+	 * \brief Método configurar el Dataset que se le pasará al gráfico.
+	 */
+	private void configurarDatasetChart()
+	{
+		/*Thread hilo= new Thread(new Runnable()
 		{
-			ArrayList<Instancia> t_arrInstancias=m_datasetN.getRows();
-			for (int j = 0; j < t_arrInstancias.size(); j++)
-			{
-				Instancia t_instancia = t_arrInstancias.get(i);
+			
+			@Override
+			public void run()
+			{*/
+				m_datasetChar = new DefaultCategoryDataset();
+				ArrayList<String> t_barrios= m_datasetN.getColumna(2);
 				
-				m_datasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(26)),m_datasetN.getNombreAtributo(26), t_barrios.get(i));//Hombres
-				m_datasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(48)),m_datasetN.getNombreAtributo(48), t_barrios.get(i));//Mujeres
-			}
-		}
+				for (int i = 0; i < t_barrios.size(); i++)
+				{
+					ArrayList<Instancia> t_arrInstancias=m_datasetN.getRows();
+					for (int j = 0; j < t_arrInstancias.size(); j++)
+					{
+						Instancia t_instancia = t_arrInstancias.get(i);
+						
+						m_datasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(26)),m_datasetN.getNombreAtributo(26), t_barrios.get(i));//Hombres
+						m_datasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(48)),m_datasetN.getNombreAtributo(48), t_barrios.get(i));//Mujeres
+					}
+				}
+				/*m_salida.notify();
+				
+				}
+		});
+		hilo.start();*/
+		
 	}
 
 	@Override
 	public void salida()
 	{
-		m_salida = ChartFactory.createBarChart(
-				"Playas de Tenerife", "Playa", "Turistas", m_datasetChar, PlotOrientation.VERTICAL, true, false, false
-		);
-		ChartFrame graficoChartFrame = new ChartFrame("Grafico de Barras", m_salida);
 		
+		ChartFrame graficoChartFrame = new ChartFrame("Grafico de Barras", m_salida);
 		CategoryPlot t_plot = m_salida.getCategoryPlot();
 		CategoryAxis t_xAxis= t_plot.getDomainAxis();
 		t_xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);//cambia la orientación de las etiquetas
-		
 		graficoChartFrame.setVisible(true);
 		graficoChartFrame.setSize(1300, 1000);
 	}

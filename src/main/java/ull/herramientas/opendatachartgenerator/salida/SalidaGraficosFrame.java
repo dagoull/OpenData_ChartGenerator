@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -107,7 +105,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(new ArrayList<>()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(m_dataset));
 					}
 				}
 		);
