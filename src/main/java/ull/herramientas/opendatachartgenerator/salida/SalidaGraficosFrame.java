@@ -24,7 +24,6 @@ public class SalidaGraficosFrame
 	private JRadioButton m_RBtnGraficoBarra;
 	private JRadioButton m_RBtnGraficoPastel;
 	private JRadioButton m_RBtnConsola;
-	private JRadioButton m_RBtnPDF;
 	private ButtonGroup m_BGrupoRadio;
 	private JButton m_BtnGenerar;
 	private IGenerarSalida m_salida;
@@ -140,13 +139,25 @@ public class SalidaGraficosFrame
 
 	private void generarPDFPerformedJFreeChart(IGenerarSalida generarSalidaGraficoBarras)
 	{
-		ICrearPDF pdf;
-		if(m_RBtnGraficoBarra.isSelected())
+		Thread hilo = new Thread(new Runnable()
 		{
-			pdf = new CrearPDFBarras(m_salida.salidaPDF(), "F:\\informe.pdf");
-			pdf.escribirGraficoEnPDF();
-		}
-		
+			@Override
+			public void run()
+			{
+				ICrearPDF pdf = null;
+				if(m_RBtnGraficoBarra.isSelected())
+				{
+					pdf = new CrearPDFBarras(m_salida.salidaPDF(), "F:\\informe.pdf");
+					
+				}
+				else if(m_RBtnGraficoPastel.isSelected())
+				{
+					pdf = new CrearPDFPastel(m_salida.salidaPDF(), "F:\\informe.pdf");
+				}
+				pdf.escribirGraficoEnPDF();
+			}
+		});
+		hilo.start();
 		
 	}
 	private void actionPerformedJFreeChart(IGenerarSalida a_salida)
