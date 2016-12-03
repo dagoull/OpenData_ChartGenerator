@@ -1,5 +1,7 @@
 package ull.herramientas.opendatachartgenerator.salida;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	}
 	public GenerarSalidaGraficoBarras(Dataset a_data)
 	{
-		m_datasetN= a_data;
+		m_datasetN = a_data;
 	}
 
 	/**
@@ -57,15 +59,29 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	//cambiar nombre de este método
 	private void configurarDataSetPropio()
 	{
-		m_datasetChar = new DefaultCategoryDataset();
-		String [] t_array= m_datasetN.getColumnas();
-		for (int i = 0; i < t_array.length; i++)
+		try
 		{
-			ArrayList<Instancia> t_a= m_datasetN.getRows();
-			for (int j = 0; j <t_a.size() ; j++)
+			m_datasetN = new Dataset("http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv");
+		} catch (MalformedURLException e)
+		{
+			e.printStackTrace();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		m_datasetChar = new DefaultCategoryDataset();
+		ArrayList<String> t_barrios= m_datasetN.getColumna(2);
+		
+		for (int i = 0; i < t_barrios.size(); i++)
+		{
+			ArrayList<Instancia> t_arrInstancias=m_datasetN.getRows();
+			for (int j = 0; j < t_arrInstancias.size(); j++)
 			{
-				Instancia aInst = t_a.get(j);
-				m_datasetChar.addValue(Integer.parseInt(aInst.getValorItem(j)),m_datasetN.getNombreAtributo(j).toString(), t_array[i].toString());
+				Instancia t_instancia = t_arrInstancias.get(i);
+				
+				m_datasetChar.addValue(Integer.parseInt(t_instancia.getValorItem(26))+0,m_datasetN.getNombreAtributo(26), t_barrios.get(i));//Hombres
+				m_datasetChar.addValue(Integer.parseInt(t_instancia.getValorItem(48)),m_datasetN.getNombreAtributo(48), t_barrios.get(i));//Mujeres
 			}
 		}
 	}
@@ -74,11 +90,11 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	public JFreeChart salida()
 	{
 		m_salida = ChartFactory.createBarChart(
-				"Playas de Tenerife", "Playa", "Turistas", m_datasetChar, PlotOrientation.VERTICAL, true, false, false
+				"Playas de Tenerife", "Playa", "Turistas", m_datasetChar, PlotOrientation.HORIZONTAL, true, false, false
 		);
-		ChartFrame a = new ChartFrame("hola", m_salida);
+		ChartFrame a = new ChartFrame("Grafico de Barras", m_salida);
 		a.setVisible(true);
-		a.setSize(500, 500);
+		a.setSize(1000, 1000);
 		return m_salida;
 	}
 
