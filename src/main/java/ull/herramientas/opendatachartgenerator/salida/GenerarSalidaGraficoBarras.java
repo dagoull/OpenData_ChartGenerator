@@ -8,6 +8,9 @@ import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -27,49 +30,19 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	private JFreeChart m_salida;
 
 	// CONSTRUCTOR/ES Y METODOS
-	public GenerarSalidaGraficoBarras(List<List<String>> arrayList)
-	{
-		m_lista = arrayList;
-		//configurarDataSet();
-		configurarDataSetPropio();
-	}
 	public GenerarSalidaGraficoBarras(Dataset a_data)
 	{
 		m_datasetN = a_data;
+		configurarDataSetPropio();
 	}
 
 	/**
 	 * \brief Método configurar el DataSet
 	 */
-	private void configurarDataSet()
-	{
-		m_datasetChar = new DefaultCategoryDataset();
-		for (int i = 0; i < m_lista.get(0).size(); i++)
-		{
-			m_datasetChar.addValue(i, "ayer", m_lista.get(0).get(i));
-		}
-		for (int i = 1; i < m_lista.get(0).size(); i++)
-		{
-			for (int j = 0; j < m_lista.get(i).size(); j++)
-			{
-				m_datasetChar.addValue(j, "ayer", m_lista.get(i).get(j));
-			}
-		}
-	}
+
 	//cambiar nombre de este método
 	private void configurarDataSetPropio()
 	{
-		try
-		{
-			m_datasetN = new Dataset("http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv");
-		} catch (MalformedURLException e)
-		{
-			e.printStackTrace();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
 		m_datasetChar = new DefaultCategoryDataset();
 		ArrayList<String> t_barrios= m_datasetN.getColumna(2);
 		
@@ -80,22 +53,26 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 			{
 				Instancia t_instancia = t_arrInstancias.get(i);
 				
-				m_datasetChar.addValue(Integer.parseInt(t_instancia.getValorItem(26))+0,m_datasetN.getNombreAtributo(26), t_barrios.get(i));//Hombres
-				m_datasetChar.addValue(Integer.parseInt(t_instancia.getValorItem(48)),m_datasetN.getNombreAtributo(48), t_barrios.get(i));//Mujeres
+				m_datasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(26)),m_datasetN.getNombreAtributo(26), t_barrios.get(i));//Hombres
+				m_datasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(48)),m_datasetN.getNombreAtributo(48), t_barrios.get(i));//Mujeres
 			}
 		}
 	}
 
 	@Override
-	public JFreeChart salida()
+	public void salida()
 	{
 		m_salida = ChartFactory.createBarChart(
-				"Playas de Tenerife", "Playa", "Turistas", m_datasetChar, PlotOrientation.HORIZONTAL, true, false, false
+				"Playas de Tenerife", "Playa", "Turistas", m_datasetChar, PlotOrientation.VERTICAL, true, false, false
 		);
-		ChartFrame a = new ChartFrame("Grafico de Barras", m_salida);
-		a.setVisible(true);
-		a.setSize(1000, 1000);
-		return m_salida;
+		ChartFrame graficoChartFrame = new ChartFrame("Grafico de Barras", m_salida);
+		
+		CategoryPlot t_plot = m_salida.getCategoryPlot();
+		CategoryAxis t_xAxis= t_plot.getDomainAxis();
+		t_xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);//cambia la orientación de las etiquetas
+		
+		graficoChartFrame.setVisible(true);
+		graficoChartFrame.setSize(1300, 1000);
 	}
 
 }

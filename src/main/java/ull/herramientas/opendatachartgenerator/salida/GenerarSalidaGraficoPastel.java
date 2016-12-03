@@ -31,24 +31,18 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 
 		for (int i = 0; i < m_lista.get(0).size(); i++)
 		{
-			m_dataset.setValue(m_lista.get(0).get(i), i );
+			m_dataset.setValue(m_lista.get(0).get(i), i);
 		}
 	}
 
 	@Override
-	public JFreeChart salida()
+	public void salida()
 	{
-		JFreeChart chart = ChartFactory.createPieChart(
-		         "Grafico de Pastel",
-		         m_dataset,
-		         true,
-		         true,
-		         false);
-		        // Mostrar Grafico
-		        ChartFrame frame = new ChartFrame("Pastel", chart);
-		        frame.pack();
-		        frame.setVisible(true);
-		return m_salida;
+		JFreeChart chart = ChartFactory.createPieChart("Grafico de Pastel", m_dataset, true, true, false);
+		// Mostrar Grafico
+		ChartFrame frame = new ChartFrame("Pastel", chart);
+		frame.pack();
+		frame.setVisible(true);
 	}
 
 }

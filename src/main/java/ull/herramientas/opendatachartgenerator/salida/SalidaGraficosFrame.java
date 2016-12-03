@@ -2,6 +2,8 @@ package ull.herramientas.opendatachartgenerator.salida;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
+
+import ull.herramientas.opendatachartgenerator.Dataset;
 
 /**
  * \class SalidaGraficosFrame
@@ -27,17 +31,19 @@ public class SalidaGraficosFrame
 	private JButton m_BtnGenerar;
 	private IGenerarSalida m_salida;
 
+	private Dataset m_dataset;
 	private JFrame m_Ventana;
 
 	// CONSTRUCTOR/ES Y MÉTODOS
-	public SalidaGraficosFrame()
+	public SalidaGraficosFrame(Dataset a_dataset)
 	{
+		m_dataset = a_dataset;
 		initComponet();
 	}
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws MalformedURLException, IOException
 	{
-		new SalidaGraficosFrame();
+		new SalidaGraficosFrame(new Dataset("http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv"));
 	}
 
 	private void initComponet()
@@ -74,27 +80,6 @@ public class SalidaGraficosFrame
 		m_BtnGenerar = new JButton("Generar");
 		m_BtnGenerar.setVisible(true);
 	}
-	private List<List<String>> lista()
-	{
-		List<List<String>> lista = new ArrayList<>();
-		for (int i = 0; i <1; i++)
-		{
-			lista.add(new ArrayList<>());
-			for (int j = 0; j < 6; j++)
-			{
-				lista.get(i).add("Nombre"+j);
-			}
-		}
-		for (int i = 1; i <6; i++)
-		{
-			lista.add(new ArrayList<>());
-			for (int j = 0; j < 6; j++)
-			{
-				lista.get(i).add(""+j);
-			}
-		}
-		return lista;
-	}
 	/**
 	 * \brief Método para inicializar y configurar los radios.
 	 */
@@ -109,7 +94,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(lista()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
 					}
 				}
 		);
@@ -122,7 +107,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(lista()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(new ArrayList<>()));
 					}
 				}
 		);
@@ -134,7 +119,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(new ArrayList<>()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
 					}
 				}
 		);
@@ -147,7 +132,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(new ArrayList<>()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
 					}
 				}
 		);
