@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
+import org.jfree.chart.JFreeChart;
+
 import ull.herramientas.opendatachartgenerator.Dataset;
 
 /**
@@ -147,12 +149,16 @@ public class SalidaGraficosFrame
 				ICrearPDF pdf = null;
 				if(m_RBtnGraficoBarra.isSelected())
 				{
-					pdf = new CrearPDFBarras(m_salida.salidaPDF(), "F:\\informe.pdf");
+					pdf = new CrearPDFBarras((JFreeChart)m_salida.salidaPDF(), "F:\\informe.pdf");
 					
 				}
 				else if(m_RBtnGraficoPastel.isSelected())
 				{
-					pdf = new CrearPDFPastel(m_salida.salidaPDF(), "F:\\informe.pdf");
+					pdf = new CrearPDFPastel((JFreeChart)m_salida.salidaPDF(), "F:\\informe.pdf");
+				}
+				else if(m_RBtnConsola.isSelected())
+				{
+					pdf= new CrearPDFConsola((String)m_salida.salidaPDF(),"F:\\consola.pdf");
 				}
 				pdf.escribirGraficoEnPDF();
 			}
