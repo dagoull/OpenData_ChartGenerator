@@ -117,7 +117,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
+						actionPerformedJFreeChart(new GenerarSalidaConsola(m_dataset));
 					}
 				}
 		);
