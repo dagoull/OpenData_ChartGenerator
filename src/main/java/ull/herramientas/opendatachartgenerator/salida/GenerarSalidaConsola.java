@@ -2,6 +2,8 @@ package ull.herramientas.opendatachartgenerator.salida;
 
 import java.util.ArrayList;
 
+import org.jfree.chart.JFreeChart;
+
 import ull.herramientas.opendatachartgenerator.Dataset;
 import ull.herramientas.opendatachartgenerator.Instancia;
 
@@ -28,9 +30,14 @@ public class GenerarSalidaConsola implements IGenerarSalida
 		}
 	}
 	@Override
-	public void salida()
+	public void salidaGrafica()
 	{
 		System.out.println(m_salida);
+	}
+	@Override
+	public JFreeChart salidaPDF()
+	{
+		return null;
 	}
 
 }

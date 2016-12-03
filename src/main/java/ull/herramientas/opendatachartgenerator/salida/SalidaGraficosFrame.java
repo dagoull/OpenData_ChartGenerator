@@ -65,7 +65,6 @@ public class SalidaGraficosFrame
 		m_Ventana.add(m_RBtnGraficoBarra);
 		m_Ventana.add(m_RBtnGraficoPastel);
 		m_Ventana.add(m_RBtnConsola);
-		m_Ventana.add(m_RBtnPDF);
 		
 		m_Ventana.add(m_BtnGenerar);
 	}
@@ -77,6 +76,16 @@ public class SalidaGraficosFrame
 	{
 		m_BtnGenerar = new JButton("Generar");
 		m_BtnGenerar.setVisible(true);
+		m_BtnGenerar.addActionListener(
+				new ActionListener()
+				{
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						generarPDFPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
+					}
+				}
+		);
 	}
 	/**
 	 * \brief Método para inicializar y configurar los radios.
@@ -122,29 +131,27 @@ public class SalidaGraficosFrame
 				}
 		);
 
-		m_RBtnPDF = new JRadioButton("PDF");
-		m_RBtnPDF.setVisible(true);
-		m_RBtnPDF.addActionListener(
-				new ActionListener()
-				{
-					@Override
-					public void actionPerformed(ActionEvent e)
-					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
-					}
-				}
-		);
 		m_BGrupoRadio = new ButtonGroup();
 
 		m_BGrupoRadio.add(m_RBtnGraficoBarra);
 		m_BGrupoRadio.add(m_RBtnGraficoPastel);
 		m_BGrupoRadio.add(m_RBtnConsola);
-		m_BGrupoRadio.add(m_RBtnPDF);
 	}
 
+	private void generarPDFPerformedJFreeChart(IGenerarSalida generarSalidaGraficoBarras)
+	{
+		ICrearPDF pdf;
+		if(m_RBtnGraficoBarra.isSelected())
+		{
+			pdf = new CrearPDFBarras(m_salida.salidaPDF(), "F:\\informe.pdf");
+			pdf.escribirGraficoEnPDF();
+		}
+		
+		
+	}
 	private void actionPerformedJFreeChart(IGenerarSalida a_salida)
 	{
 		m_salida = a_salida;
-		m_salida.salida();
+		m_salida.salidaGrafica();
 	}
 }

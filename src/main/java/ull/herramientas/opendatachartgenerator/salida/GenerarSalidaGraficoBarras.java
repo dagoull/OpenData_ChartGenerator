@@ -30,14 +30,8 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 		m_datasetN = a_data;
 		
 		configurarDatasetChart();
-		configuraSalida();
+		salidaPDF();
 		
-	}
-	private void configuraSalida()
-	{
-		m_salida = ChartFactory.createBarChart(
-				"Playas de Tenerife", "Playa", "Turistas", m_datasetChar, PlotOrientation.VERTICAL, true, false, false
-		);
 	}
 	/**
 	 * \brief Método configurar el Dataset que se le pasará al gráfico.
@@ -71,17 +65,23 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 		hilo.start();*/
 		
 	}
-
 	@Override
-	public void salida()
+	public void salidaGrafica()
 	{
-		
 		ChartFrame graficoChartFrame = new ChartFrame("Grafico de Barras", m_salida);
-		CategoryPlot t_plot = m_salida.getCategoryPlot();
-		CategoryAxis t_xAxis= t_plot.getDomainAxis();
-		t_xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);//cambia la orientación de las etiquetas
+		
 		graficoChartFrame.setVisible(true);
 		graficoChartFrame.setSize(1300, 1000);
 	}
-
+	@Override
+	public JFreeChart salidaPDF()
+	{
+		m_salida = ChartFactory.createBarChart(
+				"Gráfico de Barras", "Playa", "Turistas", m_datasetChar, PlotOrientation.VERTICAL, true, false, false
+		);
+		CategoryPlot t_plot = m_salida.getCategoryPlot();
+		CategoryAxis t_xAxis= t_plot.getDomainAxis();
+		t_xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);//cambia la orientación de las etiquetas
+		return m_salida;
+	}
 }

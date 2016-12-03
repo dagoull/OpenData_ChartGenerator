@@ -1,4 +1,7 @@
 package ull.herramientas.opendatachartgenerator.salida;
+
+import org.jfree.chart.JFreeChart;
+
 /**
  * \class Intefaz para generar las salidas
  * \author Orlandy Ariel Sánchez A.
@@ -6,5 +9,6 @@ package ull.herramientas.opendatachartgenerator.salida;
  */
 public interface IGenerarSalida
 {
-	public void salida();
+	public void salidaGrafica();
+	public JFreeChart salidaPDF();
 }
