@@ -12,7 +12,13 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import ull.herramientas.opendatachartgenerator.Dataset;
 import ull.herramientas.opendatachartgenerator.Instancia;
-
+/**
+ * \class GenerarSalidaGraficoPastel
+ * \brief clase encargarda de mostrar un gráfico de pastel
+ * 
+ * \author Orlandy Ariel Sánchez A.
+ *
+ */
 public class GenerarSalidaGraficoPastel implements IGenerarSalida
 {
 	// ATRIBUTOS

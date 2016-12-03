@@ -14,9 +14,11 @@ import ull.herramientas.opendatachartgenerator.Dataset;
 import ull.herramientas.opendatachartgenerator.Instancia;
 
 /**
- * \class SalidaGraficosFrame \brief Clase que genera las salidas en grafico de
- * barras \author Orlandy Ariel Sánchez A.
+ * \class GenerarSalidaGraficoBarras
+ * \brief clase encargarda de mostrar un gráfico de barras
  * 
+ * \author Orlandy Ariel Sánchez A.
+ *
  */
 public class GenerarSalidaGraficoBarras implements IGenerarSalida
 { // ATRIBUTOS

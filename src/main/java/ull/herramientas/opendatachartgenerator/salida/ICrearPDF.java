@@ -1,6 +1,7 @@
 package ull.herramientas.opendatachartgenerator.salida;
 /**
- * \class Interfaz para crear documentos pdf
+ * \interface ICrearPDF 
+ * \brief intefaz para crear documentos pdf
  * \author Orlandy Ariel Sánchez A.
  *
  */

@@ -7,7 +7,12 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
-
+/**
+ * \class CrearPDFConsola
+ *	\brief Clase que crea y configura un documento pdf 
+ * para imprirmir los datos
+ * \author Orlandy Ariel Sánchez A.
+ */
 public class CrearPDFConsola implements ICrearPDF
 {
 	private int m_ancho;

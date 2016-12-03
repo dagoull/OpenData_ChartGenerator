@@ -13,6 +13,12 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
 
+/**
+ * \class CrearPDFPastel
+ * \brief Clase que crea y configura un documento pdf 
+ * para imprirmir los datos del gráfico de pastel
+ * \author Orlandy Ariel Sánchez A.
+ */
 public class CrearPDFPastel implements ICrearPDF
 {
 	private int m_ancho;

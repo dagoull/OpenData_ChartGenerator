@@ -18,7 +18,8 @@ import ull.herramientas.opendatachartgenerator.Dataset;
 /**
  * \class SalidaGraficosFrame
  * \brief ventana para generar salidas La clase genera la salida
- * dependiendo de la opción elegida por el usuario \author Orlandy Ariel Sánchez A.
+ * dependiendo de la opción elegida por el usuario 
+ * \author Orlandy Ariel Sánchez A.
  *
  */
 public class SalidaGraficosFrame

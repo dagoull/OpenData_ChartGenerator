@@ -14,10 +14,10 @@ import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
 /**
- * \class, Clase CrearPDFBarras
- * \brief encargada de generar un documento pdf para un gráfico de barras
+ * \class CrearPDFBarras
+ *	\brief Clase que crea y configura un documento pdf 
+ * para imprirmir los datos del gráfico de barras
  * \author Orlandy Ariel Sánchez A.
- *
  */
 public class CrearPDFBarras implements ICrearPDF
 {
@@ -46,7 +46,7 @@ public class CrearPDFBarras implements ICrearPDF
 		m_ancho = 870;
 		m_alto = 500;
 		m_escribe = null;
-		m_documento = new Document(PageSize.A4.rotate());// rota la página para poder representar mejor el gráfico
+		m_documento = new Document(PageSize.A4.rotate());/// Rota la página para poder representar mejor el gráfico
 	}
 
 	@Override

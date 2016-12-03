@@ -4,18 +4,33 @@ import java.util.ArrayList;
 
 import ull.herramientas.opendatachartgenerator.Dataset;
 import ull.herramientas.opendatachartgenerator.Instancia;
-
+/**
+ * 
+ * \class GenerarSalidaConsola
+ * \brief clase encargarda de mostrar un informe de los turistas
+ * este informe se mostrará por la consola, en ella mostrará
+ * tuplas con la información barrio, numero de mujeres, numero de hombres
+ * 
+ * \author Orlandy Ariel Sánchez A.
+ *
+ */
 public class GenerarSalidaConsola implements IGenerarSalida
 {
 	private Dataset m_dataset;
 	private String m_salida;
-	
+	/**
+	 * \brief Constructor que recibe un dataset
+	 * \param a_dataset, dataset que contiene la información a representar.
+	 */
 	public GenerarSalidaConsola(Dataset a_dataset)
 	{
 		m_dataset = a_dataset;
 		m_salida = "BARRIOS \t\t\tNºMujeres \t\tNºHombres\n";
 		configurarSalida();
 	}
+	/**
+	 * \brielf método que configura el texto que para su posterior representación.
+	 */
 	private void configurarSalida()
 	{
 		ArrayList<String> t_barrios= m_dataset.getColumna(2);

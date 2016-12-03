@@ -1,7 +1,8 @@
 package ull.herramientas.opendatachartgenerator.salida;
 
 /**
- * \class Intefaz para generar las salidas
+ * \interface IGenerarSalida 
+ * \brief interfaz para generar las salidas
  * \author Orlandy Ariel Sánchez A.
  *
  */
