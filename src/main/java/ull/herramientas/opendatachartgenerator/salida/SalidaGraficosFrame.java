@@ -24,20 +24,20 @@ import ull.herramientas.opendatachartgenerator.Dataset;
  */
 public class SalidaGraficosFrame
 {// ATRIBUTOS
-	private JRadioButton m_RBtnGraficoBarra;
-	private JRadioButton m_RBtnGraficoPastel;
-	private JRadioButton m_RBtnConsola;
-	private ButtonGroup m_BGrupoRadio;
-	private JButton m_BtnGenerar;
-	private IGenerarSalida m_salida;
+	private JRadioButton mRBtnGraficoBarra;
+	private JRadioButton mRBtnGraficoPastel;
+	private JRadioButton mRBtnConsola;
+	private ButtonGroup mBGrupoRadio;
+	private JButton mBtnGenerar;
+	private IGenerarSalida mSalida;
 
-	private Dataset m_dataset;
-	private JFrame m_Ventana;
+	private Dataset mDataset;
+	private JFrame mVentana;
 
 	// CONSTRUCTOR/ES Y MÉTODOS
-	public SalidaGraficosFrame(Dataset a_dataset)
+	public SalidaGraficosFrame(Dataset aDataset)
 	{
-		m_dataset = a_dataset;
+		mDataset = aDataset;
 		initComponet();
 	}
 
@@ -58,17 +58,17 @@ public class SalidaGraficosFrame
 	 */
 	private void initVentana()
 	{
-		m_Ventana = new JFrame("Salida");
-		m_Ventana.getContentPane().setLayout(new BoxLayout(m_Ventana.getContentPane(), BoxLayout.Y_AXIS));
-		m_Ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		m_Ventana.setLocationRelativeTo(null);
-		m_Ventana.setSize(300, 200);
-		m_Ventana.setVisible(true);
-		m_Ventana.add(m_RBtnGraficoBarra);
-		m_Ventana.add(m_RBtnGraficoPastel);
-		m_Ventana.add(m_RBtnConsola);
+		mVentana = new JFrame("Salida");
+		mVentana.getContentPane().setLayout(new BoxLayout(mVentana.getContentPane(), BoxLayout.Y_AXIS));
+		mVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mVentana.setLocationRelativeTo(null);
+		mVentana.setSize(300, 200);
+		mVentana.setVisible(true);
+		mVentana.add(mRBtnGraficoBarra);
+		mVentana.add(mRBtnGraficoPastel);
+		mVentana.add(mRBtnConsola);
 		
-		m_Ventana.add(m_BtnGenerar);
+		mVentana.add(mBtnGenerar);
 	}
 
 	/**
@@ -76,15 +76,15 @@ public class SalidaGraficosFrame
 	 */
 	private void configBoton()
 	{
-		m_BtnGenerar = new JButton("Generar");
-		m_BtnGenerar.setVisible(true);
-		m_BtnGenerar.addActionListener(
+		mBtnGenerar = new JButton("Generar");
+		mBtnGenerar.setVisible(true);
+		mBtnGenerar.addActionListener(
 				new ActionListener()
 				{
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						generarPDFPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
+						generarPDFPerformedJFreeChart();
 					}
 				}
 		);
@@ -94,82 +94,80 @@ public class SalidaGraficosFrame
 	 */
 	private void initRadioButton()
 	{
-		m_RBtnGraficoBarra = new JRadioButton("Gráfico de Barra");
-		m_RBtnGraficoBarra.setVisible(true);
+		mRBtnGraficoBarra = new JRadioButton("Gráfico de Barra");
+		mRBtnGraficoBarra.setVisible(true);
 		
-		m_RBtnGraficoBarra.addActionListener(
+		mRBtnGraficoBarra.addActionListener(
 				new ActionListener()
 				{
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(mDataset));
 					}
 				}
 		);
 
-		m_RBtnGraficoPastel = new JRadioButton("Gráfico de Pastel");
-		m_RBtnGraficoPastel.setVisible(true);
-		m_RBtnGraficoPastel.addActionListener(
+		mRBtnGraficoPastel = new JRadioButton("Gráfico de Pastel");
+		mRBtnGraficoPastel.setVisible(true);
+		mRBtnGraficoPastel.addActionListener(
 				new ActionListener()
 				{
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(m_dataset));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(mDataset));
 					}
 				}
 		);
-		m_RBtnConsola = new JRadioButton("Consola");
-		m_RBtnConsola.setVisible(true);
-		m_RBtnConsola.addActionListener(
+		mRBtnConsola = new JRadioButton("Consola");
+		mRBtnConsola.setVisible(true);
+		mRBtnConsola.addActionListener(
 				new ActionListener()
 				{
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaConsola(m_dataset));
+						actionPerformedJFreeChart(new GenerarSalidaConsola(mDataset));
 					}
 				}
 		);
-
-		m_BGrupoRadio = new ButtonGroup();
-
-		m_BGrupoRadio.add(m_RBtnGraficoBarra);
-		m_BGrupoRadio.add(m_RBtnGraficoPastel);
-		m_BGrupoRadio.add(m_RBtnConsola);
+		mBGrupoRadio = new ButtonGroup();
+		mBGrupoRadio.add(mRBtnGraficoBarra);
+		mBGrupoRadio.add(mRBtnGraficoPastel);
+		mBGrupoRadio.add(mRBtnConsola);
 	}
 
-	private void generarPDFPerformedJFreeChart(IGenerarSalida generarSalidaGraficoBarras)
+	private void generarPDFPerformedJFreeChart()
 	{
 		Thread hilo = new Thread(new Runnable()
 		{
 			@Override
 			public void run()
 			{
-				ICrearPDF pdf = null;
-				if(m_RBtnGraficoBarra.isSelected())
+				CrearPDF pdf = null;
+				if(mRBtnGraficoBarra.isSelected())
 				{
-					pdf = new CrearPDFBarras((JFreeChart)m_salida.salidaPDF(), "F:\\informe.pdf");
+					pdf = new CrearPDFBarras((JFreeChart)mSalida.salidaPDF(), "F:\\barras.pdf");
 					
 				}
-				else if(m_RBtnGraficoPastel.isSelected())
+				else if(mRBtnGraficoPastel.isSelected())
 				{
-					pdf = new CrearPDFPastel((JFreeChart)m_salida.salidaPDF(), "F:\\informe.pdf");
+					pdf = new CrearPDFPastel((JFreeChart)mSalida.salidaPDF(), "F:\\pastel.pdf");
+					pdf.escribirGraficoEnPDF();
 				}
-				else if(m_RBtnConsola.isSelected())
+				else if(mRBtnConsola.isSelected())
 				{
-					pdf= new CrearPDFConsola((String)m_salida.salidaPDF(),"F:\\consola.pdf");
+					pdf= new CrearPDFConsola((String)mSalida.salidaPDF(),"F:\\consola.pdf");
 				}
 				pdf.escribirGraficoEnPDF();
 			}
 		});
 		hilo.start();
-		
 	}
 	private void actionPerformedJFreeChart(IGenerarSalida a_salida)
 	{
-		m_salida = a_salida;
-		m_salida.salidaGrafica();
+		mSalida = a_salida;
+		mSalida.salidaGrafica();
 	}
 }

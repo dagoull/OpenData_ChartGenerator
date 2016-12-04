@@ -22,15 +22,14 @@ import ull.herramientas.opendatachartgenerator.Instancia;
  */
 public class GenerarSalidaGraficoBarras implements IGenerarSalida
 { // ATRIBUTOS
-	private DefaultCategoryDataset m_datasetChar;
-	private Dataset m_datasetN;
-	private JFreeChart m_salida;
+	private DefaultCategoryDataset mDatasetChar;
+	private Dataset mDataset;
+	private JFreeChart mSalida;
 
 	// CONSTRUCTOR/ES Y METODOS
-	public GenerarSalidaGraficoBarras(Dataset a_data)
+	public GenerarSalidaGraficoBarras(Dataset aData)
 	{
-		m_datasetN = a_data;
-		
+		mDataset = aData;
 		configurarDatasetChart();
 		salidaPDF();
 		
@@ -46,21 +45,21 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 			@Override
 			public void run()
 			{*/
-				m_datasetChar = new DefaultCategoryDataset();
-				ArrayList<String> t_barrios= m_datasetN.getColumna(2);
+				mDatasetChar = new DefaultCategoryDataset();
+				ArrayList<String> tBarrios= mDataset.getColumna(2);
 				
-				for (int i = 0; i < t_barrios.size(); i++)
+				for (int i = 0; i < tBarrios.size(); i++)
 				{
-					ArrayList<Instancia> t_arrInstancias=m_datasetN.getRows();
-					for (int j = 0; j < t_arrInstancias.size(); j++)
+					ArrayList<Instancia> tArrInstancias=mDataset.getRows();
+					for (int j = 0; j < tArrInstancias.size(); j++)
 					{
-						Instancia t_instancia = t_arrInstancias.get(i);
+						Instancia t_instancia = tArrInstancias.get(i);
 						
-						m_datasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(26)),m_datasetN.getNombreAtributo(26), t_barrios.get(i));//Hombres
-						m_datasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(48)),m_datasetN.getNombreAtributo(48), t_barrios.get(i));//Mujeres
+						mDatasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(26)),mDataset.getNombreAtributo(26), tBarrios.get(i));//Hombres
+						mDatasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(48)),mDataset.getNombreAtributo(48), tBarrios.get(i));//Mujeres
 					}
 				}
-				/*m_salida.notify();
+				/*mSalida.notify();
 				
 				}
 		});
@@ -70,20 +69,20 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	@Override
 	public void salidaGrafica()
 	{
-		ChartFrame graficoChartFrame = new ChartFrame("Grafico de Barras", m_salida);
+		ChartFrame tGraficoChartFrame = new ChartFrame("Grafico de Barras", mSalida);
 		
-		graficoChartFrame.setVisible(true);
-		graficoChartFrame.setSize(1300, 1000);
+		tGraficoChartFrame.setVisible(true);
+		tGraficoChartFrame.setSize(1300, 1000);
 	}
 	@Override
 	public JFreeChart salidaPDF()
 	{
-		m_salida = ChartFactory.createBarChart(
-				"Gráfico de Barras", "Playa", "Turistas", m_datasetChar, PlotOrientation.VERTICAL, true, false, false
+		mSalida = ChartFactory.createBarChart(
+				"Gráfico de Barras", "Playa", "Turistas", mDatasetChar, PlotOrientation.VERTICAL, true, false, false
 		);
-		CategoryPlot t_plot = m_salida.getCategoryPlot();
-		CategoryAxis t_xAxis= t_plot.getDomainAxis();
-		t_xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);//cambia la orientación de las etiquetas
-		return m_salida;
+		CategoryPlot tPlot = mSalida.getCategoryPlot();
+		CategoryAxis txAxis= tPlot.getDomainAxis();
+		txAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);///Cambia la orientación de las etiquetas
+		return mSalida;
 	}
 }

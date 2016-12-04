@@ -16,16 +16,16 @@ import ull.herramientas.opendatachartgenerator.Instancia;
  */
 public class GenerarSalidaConsola implements IGenerarSalida
 {
-	private Dataset m_dataset;
-	private String m_salida;
+	private Dataset mDataset;
+	private String mSalida;
 	/**
 	 * \brief Constructor que recibe un dataset
 	 * \param a_dataset, dataset que contiene la información a representar.
 	 */
-	public GenerarSalidaConsola(Dataset a_dataset)
+	public GenerarSalidaConsola(Dataset aDataset)
 	{
-		m_dataset = a_dataset;
-		m_salida = "BARRIOS \t\t\tNºMujeres \t\tNºHombres\n";
+		mDataset = aDataset;
+		mSalida = "BARRIOS \t\t\tNºMujeres \t\tNºHombres\n";
 		configurarSalida();
 	}
 	/**
@@ -33,24 +33,24 @@ public class GenerarSalidaConsola implements IGenerarSalida
 	 */
 	private void configurarSalida()
 	{
-		ArrayList<String> t_barrios= m_dataset.getColumna(2);
+		ArrayList<String> tBarrios= mDataset.getColumna(2);
 		
-		for (int i = 0; i < t_barrios.size(); i++)
+		for (int i = 0; i < tBarrios.size(); i++)
 		{
-			ArrayList<Instancia> t_arrInstancias=m_dataset.getRows();
+			ArrayList<Instancia> tArrInstancias=mDataset.getRows();
 			
-				m_salida+=t_barrios.get(i)+"\t\t\t"+t_arrInstancias.get(i).getValorItem(48)+"\t\t"+t_arrInstancias.get(i).getValorItem(26)+"\n";
+				mSalida+=tBarrios.get(i)+"\t\t\t"+tArrInstancias.get(i).getValorItem(48)+"\t\t"+tArrInstancias.get(i).getValorItem(26)+"\n";
 		}
 	}
 	@Override
 	public void salidaGrafica()
 	{
-		System.out.println(m_salida);
+		System.out.println(mSalida);
 	}
 	@Override
 	public  String salidaPDF()
 	{
-		return m_salida;
+		return mSalida;
 	}
 
 }

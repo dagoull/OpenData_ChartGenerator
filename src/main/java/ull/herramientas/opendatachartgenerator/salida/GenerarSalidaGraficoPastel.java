@@ -22,14 +22,14 @@ import ull.herramientas.opendatachartgenerator.Instancia;
 public class GenerarSalidaGraficoPastel implements IGenerarSalida
 {
 	// ATRIBUTOS
-	private DefaultPieDataset m_datasetChartPie;
-	private JFreeChart m_salida;
-	private Dataset m_datasetN;
+	private DefaultPieDataset mDatasetChartPie;
+	private JFreeChart mSalida;
+	private Dataset mDataset;
 
 	// CONSTRUCTOR/ES Y METODOS
-	public GenerarSalidaGraficoPastel(Dataset a_dataset)
+	public GenerarSalidaGraficoPastel(Dataset aDataset)
 	{
-		m_datasetN = a_dataset;
+		mDataset = aDataset;
 		configurarDataSet();
 		salidaPDF();
 	}
@@ -39,20 +39,20 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 	 */
 	private void configurarDataSet()
 	{
-		m_datasetChartPie = new DefaultPieDataset();
+		mDatasetChartPie = new DefaultPieDataset();
 
-		ArrayList<String> t_barrios = m_datasetN.getColumna(2);
+		ArrayList<String> tBarrios = mDataset.getColumna(2);
 
-		for (int i = 0; i < t_barrios.size(); i++)
+		for (int i = 0; i < tBarrios.size(); i++)
 		{
-			ArrayList<Instancia> t_arrInstancias = m_datasetN.getRows();
-			for (int j = 0; j < t_arrInstancias.size(); j++)
+			ArrayList<Instancia> tArrInstancias = mDataset.getRows();
+			for (int j = 0; j < tArrInstancias.size(); j++)
 			{
-				Instancia t_instancia = t_arrInstancias.get(i);
-				Double t_totalTuristasPorBarrio = Double.parseDouble(t_instancia.getValorItem(26))
-						+ Double.parseDouble(t_instancia.getValorItem(48));
-				Double t_porcentajePorBarrio = t_totalTuristasPorBarrio / 100;
-				m_datasetChartPie.setValue(t_barrios.get(i), t_porcentajePorBarrio);
+				Instancia tInstancia = tArrInstancias.get(i);
+				Double tTotalTuristasPorBarrio = Double.parseDouble(tInstancia.getValorItem(26))
+						+ Double.parseDouble(tInstancia.getValorItem(48));
+				Double t_porcentajePorBarrio = tTotalTuristasPorBarrio / 100;
+				mDatasetChartPie.setValue(tBarrios.get(i), t_porcentajePorBarrio);
 			}
 		}
 	}
@@ -60,26 +60,24 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 	@Override
 	public void salidaGrafica()
 	{
-
 		// Mostrar Grafico
-		ChartFrame graficoChartFrame = new ChartFrame("Pastel", m_salida);
-		graficoChartFrame.setVisible(true);
-		graficoChartFrame.setSize(1300, 1000);
+		ChartFrame tGraficoChartFrame = new ChartFrame("Pastel", mSalida);
+		tGraficoChartFrame.setVisible(true);
+		tGraficoChartFrame.setSize(1300, 1000);
 	}
 
 	@Override
 	public JFreeChart salidaPDF()
 	{
-		m_salida = ChartFactory.createPieChart("Gráfico de Pastel", m_datasetChartPie, true, true, false);
+		mSalida = ChartFactory.createPieChart("Gráfico de Pastel", mDatasetChartPie, true, true, false);
 
-		PiePlot plot = (PiePlot) m_salida.getPlot();// añade el porcetaje a la
-													// etiqueta
-		plot.setSimpleLabels(true);
+		PiePlot tPlot = (PiePlot) mSalida.getPlot();/// añade el porcetaje a la  etiqueta
+		tPlot.setSimpleLabels(true);
 		PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
 				"{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%")
-		);// Formatea el porcentaje
-		plot.setLabelGenerator(gen);
-		return m_salida;
+		);/// Formatea el porcentaje
+		tPlot.setLabelGenerator(gen);
+		return mSalida;
 	}
 
 }
