@@ -42,7 +42,8 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 		mDatasetChartPie = new DefaultPieDataset();
 
 		ArrayList<String> tBarrios = mDataset.getColumna(2);
-
+		double tTotalTurista=totalTuristas();
+		System.err.println(tTotalTurista);
 		for (int i = 0; i < tBarrios.size(); i++)
 		{
 			ArrayList<Instancia> tArrInstancias = mDataset.getRows();
@@ -51,12 +52,25 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 				Instancia tInstancia = tArrInstancias.get(i);
 				Double tTotalTuristasPorBarrio = Double.parseDouble(tInstancia.getValorItem(26))
 						+ Double.parseDouble(tInstancia.getValorItem(48));
-				Double t_porcentajePorBarrio = tTotalTuristasPorBarrio / 100;
+				Double t_porcentajePorBarrio = (tTotalTuristasPorBarrio * 100)/tTotalTurista;
 				mDatasetChartPie.setValue(tBarrios.get(i), t_porcentajePorBarrio);
 			}
 		}
 	}
-
+	private double totalTuristas()
+	{
+		ArrayList<Instancia> tArrInstancias = mDataset.getRows();
+		double result = 0.0;
+		for (int i = 0; i < tArrInstancias.size(); i++)
+		{
+			Instancia tInstancia = tArrInstancias.get(i);
+			Double tTotalTuristasPorBarrio = Double.parseDouble(tInstancia.getValorItem(26))
+					+ Double.parseDouble(tInstancia.getValorItem(48));
+			result += tTotalTuristasPorBarrio;
+		}
+		
+		return result;
+	}
 	@Override
 	public void salidaGrafica()
 	{
@@ -74,7 +88,7 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 		PiePlot tPlot = (PiePlot) mSalida.getPlot();/// añade el porcetaje a la  etiqueta
 		tPlot.setSimpleLabels(true);
 		PieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
-				"{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%")
+				"{0}: ({2})", new DecimalFormat("0"), new DecimalFormat("0.0%")
 		);/// Formatea el porcentaje
 		tPlot.setLabelGenerator(gen);
 		return mSalida;
