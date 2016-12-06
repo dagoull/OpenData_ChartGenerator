@@ -6,6 +6,11 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
+/**
+ * Interfaz para la clase del lector/cargador de ficheros de conjuntos de datos
+ * @author Mauricio
+ *
+ */
 public interface IReader {
 
 	/**
