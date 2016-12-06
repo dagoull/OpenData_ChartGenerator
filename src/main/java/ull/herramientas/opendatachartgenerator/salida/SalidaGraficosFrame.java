@@ -2,8 +2,8 @@ package ull.herramientas.opendatachartgenerator.salida;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -11,10 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
+import org.jfree.chart.JFreeChart;
+
+import ull.herramientas.opendatachartgenerator.Dataset;
+
 /**
  * \class SalidaGraficosFrame
  * \brief ventana para generar salidas La clase genera la salida
- * dependiendo de la opción elegida por el usuario \author Orlandy Ariel Sánchez A.
+ * dependiendo de la opción elegida por el usuario 
+ * \author Orlandy Ariel Sánchez A.
  *
  */
 public class SalidaGraficosFrame
@@ -22,22 +27,23 @@ public class SalidaGraficosFrame
 	private JRadioButton m_RBtnGraficoBarra;
 	private JRadioButton m_RBtnGraficoPastel;
 	private JRadioButton m_RBtnConsola;
-	private JRadioButton m_RBtnPDF;
 	private ButtonGroup m_BGrupoRadio;
 	private JButton m_BtnGenerar;
 	private IGenerarSalida m_salida;
 
+	private Dataset m_dataset;
 	private JFrame m_Ventana;
 
 	// CONSTRUCTOR/ES Y MÉTODOS
-	public SalidaGraficosFrame()
+	public SalidaGraficosFrame(Dataset a_dataset)
 	{
+		m_dataset = a_dataset;
 		initComponet();
 	}
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws MalformedURLException, IOException
 	{
-		new SalidaGraficosFrame();
+		new SalidaGraficosFrame(new Dataset("http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv"));
 	}
 
 	private void initComponet()
@@ -61,7 +67,6 @@ public class SalidaGraficosFrame
 		m_Ventana.add(m_RBtnGraficoBarra);
 		m_Ventana.add(m_RBtnGraficoPastel);
 		m_Ventana.add(m_RBtnConsola);
-		m_Ventana.add(m_RBtnPDF);
 		
 		m_Ventana.add(m_BtnGenerar);
 	}
@@ -73,27 +78,16 @@ public class SalidaGraficosFrame
 	{
 		m_BtnGenerar = new JButton("Generar");
 		m_BtnGenerar.setVisible(true);
-	}
-	private List<List<String>> lista()
-	{
-		List<List<String>> lista = new ArrayList<>();
-		for (int i = 0; i <1; i++)
-		{
-			lista.add(new ArrayList<>());
-			for (int j = 0; j < 6; j++)
-			{
-				lista.get(i).add("Nombre"+j);
-			}
-		}
-		for (int i = 1; i <6; i++)
-		{
-			lista.add(new ArrayList<>());
-			for (int j = 0; j < 6; j++)
-			{
-				lista.get(i).add(""+j);
-			}
-		}
-		return lista;
+		m_BtnGenerar.addActionListener(
+				new ActionListener()
+				{
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						generarPDFPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
+					}
+				}
+		);
 	}
 	/**
 	 * \brief Método para inicializar y configurar los radios.
@@ -109,7 +103,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(lista()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(m_dataset));
 					}
 				}
 		);
@@ -122,7 +116,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(lista()));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(m_dataset));
 					}
 				}
 		);
@@ -134,34 +128,48 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(new ArrayList<>()));
+						actionPerformedJFreeChart(new GenerarSalidaConsola(m_dataset));
 					}
 				}
 		);
 
-		m_RBtnPDF = new JRadioButton("PDF");
-		m_RBtnPDF.setVisible(true);
-		m_RBtnPDF.addActionListener(
-				new ActionListener()
-				{
-					@Override
-					public void actionPerformed(ActionEvent e)
-					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(new ArrayList<>()));
-					}
-				}
-		);
 		m_BGrupoRadio = new ButtonGroup();
 
 		m_BGrupoRadio.add(m_RBtnGraficoBarra);
 		m_BGrupoRadio.add(m_RBtnGraficoPastel);
 		m_BGrupoRadio.add(m_RBtnConsola);
-		m_BGrupoRadio.add(m_RBtnPDF);
 	}
 
+	private void generarPDFPerformedJFreeChart(IGenerarSalida generarSalidaGraficoBarras)
+	{
+		Thread hilo = new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				ICrearPDF pdf = null;
+				if(m_RBtnGraficoBarra.isSelected())
+				{
+					pdf = new CrearPDFBarras((JFreeChart)m_salida.salidaPDF(), "F:\\informe.pdf");
+					
+				}
+				else if(m_RBtnGraficoPastel.isSelected())
+				{
+					pdf = new CrearPDFPastel((JFreeChart)m_salida.salidaPDF(), "F:\\informe.pdf");
+				}
+				else if(m_RBtnConsola.isSelected())
+				{
+					pdf= new CrearPDFConsola((String)m_salida.salidaPDF(),"F:\\consola.pdf");
+				}
+				pdf.escribirGraficoEnPDF();
+			}
+		});
+		hilo.start();
+		
+	}
 	private void actionPerformedJFreeChart(IGenerarSalida a_salida)
 	{
 		m_salida = a_salida;
-		m_salida.salida();
+		m_salida.salidaGrafica();
 	}
 }
