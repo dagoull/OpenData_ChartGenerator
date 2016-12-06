@@ -12,10 +12,18 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Clase que representa a un lector/cargador de ficheros de conjuntos de datos
+ * @author Mauricio
+ *
+ */
 public class Reader implements IReader{
 	private ArrayList<Instancia> instancias;
 	private String[] nombres_atributos;
 
+	/**
+	 * Constructor del lector/cargador de ficheros de conjuntos de datos
+	 */
 	public Reader()
 	{
 		this.instancias = new ArrayList<Instancia>();
@@ -76,6 +84,11 @@ public class Reader implements IReader{
 
 	}
 
+	/**
+	 * Método que verifica si una dirección de un fichero es remota (URL) o local
+	 * @param url
+	 * @return false - Si la dirección del fichero no es remota, true - Si la dirección del fichero si es remota
+	 */
 	public boolean isValidURL(String url) {
 
 	    URL u = null;
@@ -107,11 +120,12 @@ public class Reader implements IReader{
 
 
 	/**
-	 * @param nombres_atributos the nombres_atributos to set
+	 * Asigna la lista de nombres de los atributos del conjunto de datos de un fichero leído
+	 * @param - Lista de nombres de los atributos a asignar
 	 */
 	public void setNombres_atributos(String[] nombres_atributos) {
 		this.nombres_atributos = nombres_atributos;
 	}
 
-	
+
 }
