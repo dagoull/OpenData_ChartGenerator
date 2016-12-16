@@ -18,7 +18,7 @@ import ull.herramientas.opendatachartgenerator.Dataset;
 /**
  * \class SalidaGraficosFrame
  * \brief ventana para generar salidas La clase genera la salida
- * dependiendo de la opción elegida por el usuario 
+ * dependiendo de la opción elegida por el usuario
  * \author Orlandy Ariel Sánchez A.
  *
  */
@@ -39,11 +39,6 @@ public class SalidaGraficosFrame
 	{
 		mDataset = aDataset;
 		initComponet();
-	}
-
-	public static void main(String[] args) throws MalformedURLException, IOException
-	{
-		new SalidaGraficosFrame(new Dataset("http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv"));
 	}
 
 	private void initComponet()
@@ -67,7 +62,7 @@ public class SalidaGraficosFrame
 		mVentana.add(mRBtnGraficoBarra);
 		mVentana.add(mRBtnGraficoPastel);
 		mVentana.add(mRBtnConsola);
-		
+
 		mVentana.add(mBtnGenerar);
 	}
 
@@ -96,7 +91,7 @@ public class SalidaGraficosFrame
 	{
 		mRBtnGraficoBarra = new JRadioButton("Gráfico de Barra");
 		mRBtnGraficoBarra.setVisible(true);
-		
+
 		mRBtnGraficoBarra.addActionListener(
 				new ActionListener()
 				{
@@ -149,7 +144,7 @@ public class SalidaGraficosFrame
 				if(mRBtnGraficoBarra.isSelected())
 				{
 					pdf = new CrearPDFBarras((JFreeChart)mSalida.salidaPDF(), "F:\\barras.pdf");
-					
+
 				}
 				else if(mRBtnGraficoPastel.isSelected())
 				{
