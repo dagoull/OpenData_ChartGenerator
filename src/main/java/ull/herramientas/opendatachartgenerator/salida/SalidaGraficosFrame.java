@@ -2,9 +2,6 @@ package ull.herramientas.opendatachartgenerator.salida;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.MalformedURLException;
-
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -31,6 +28,8 @@ public class SalidaGraficosFrame
 	private JButton mBtnGenerar;
 	private IGenerarSalida mSalida;
 
+	private String m_rutaGuardarPDF;
+	private String m_nombreSalidaFicheroPDF;
 	private Dataset mDataset;
 	private JFrame mVentana;
 
@@ -79,7 +78,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						generarPDFPerformedJFreeChart();
+						lanzarExploradorArchivos();
 					}
 				}
 		);
@@ -98,7 +97,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(mDataset));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoBarras(mDataset),"/InformeGraficoDeBarras.PDF");
 					}
 				}
 		);
@@ -111,7 +110,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(mDataset));
+						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(mDataset),"/InformeGraficoDeBarras.PDF");
 					}
 				}
 		);
@@ -123,7 +122,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaConsola(mDataset));
+						actionPerformedJFreeChart(new GenerarSalidaConsola(mDataset),"/InformeConsola.PDF");
 					}
 				}
 		);
@@ -132,36 +131,42 @@ public class SalidaGraficosFrame
 		mBGrupoRadio.add(mRBtnGraficoPastel);
 		mBGrupoRadio.add(mRBtnConsola);
 	}
-
-	private void generarPDFPerformedJFreeChart()
+	private void lanzarExploradorArchivos()
 	{
-		Thread hilo = new Thread(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				CrearPDF pdf = null;
-				if(mRBtnGraficoBarra.isSelected())
-				{
-					pdf = new CrearPDFBarras((JFreeChart)mSalida.salidaPDF(), "F:\\barras.pdf");
-
-				}
-				else if(mRBtnGraficoPastel.isSelected())
-				{
-					pdf = new CrearPDFPastel((JFreeChart)mSalida.salidaPDF(), "F:\\pastel.pdf");
-					pdf.escribirGraficoEnPDF();
-				}
-				else if(mRBtnConsola.isSelected())
-				{
-					pdf= new CrearPDFConsola((String)mSalida.salidaPDF(),"F:\\consola.pdf");
-				}
-				pdf.escribirGraficoEnPDF();
-			}
-		});
-		hilo.start();
+		FicheroSalidaPDFDialog fic=new FicheroSalidaPDFDialog(mVentana);
+		fic.setVisible(true);
+		generarPDFPerformedJFreeChart(fic.getRuta());
 	}
-	private void actionPerformedJFreeChart(IGenerarSalida a_salida)
+	/**
+	 * \brief Método que se invoca cuando se pulse en generar pdf,
+	 * este se encargará de generar la salida adecuada.
+	 */
+	private void generarPDFPerformedJFreeChart(String a_directorio)
 	{
+		m_rutaGuardarPDF = a_directorio + m_nombreSalidaFicheroPDF;
+
+		CrearPDF pdf = null;
+		if (mRBtnGraficoBarra.isSelected())
+		{
+			pdf = new CrearPDFBarras((JFreeChart) mSalida.salidaPDF(), m_rutaGuardarPDF);
+		} else if (mRBtnGraficoPastel.isSelected())
+		{
+			pdf = new CrearPDFPastel((JFreeChart) mSalida.salidaPDF(), m_rutaGuardarPDF);
+		} else if (mRBtnConsola.isSelected())
+		{
+			pdf = new CrearPDFConsola((String) mSalida.salidaPDF(), m_rutaGuardarPDF);
+		}
+		pdf.escribirGraficoEnPDF();
+
+	}
+	/**
+	 * \brief Método que crea la salida según se marquen los JRadioButton
+	 * \param a_salida, tipo de salida a generar
+	 * \param a_nombreFich, nombre del fichero .pdf
+	 */
+	private void actionPerformedJFreeChart(IGenerarSalida a_salida, String a_nombreFich)
+	{
+		m_nombreSalidaFicheroPDF = a_nombreFich;
 		mSalida = a_salida;
 		mSalida.salidaGrafica();
 	}

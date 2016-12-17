@@ -67,7 +67,6 @@ public class FicheroSalidaPDFDialog extends JDialog
 				dispose();
 			}
 		});
-		
 	}
 	public String getRuta()
 	{
@@ -76,7 +75,6 @@ public class FicheroSalidaPDFDialog extends JDialog
 	private void initComponent()
 	{
 		initFormulario();
-		this.setVisible(true);
 		this.setLayout(new FlowLayout());
 		this.setLocationRelativeTo(null);
 		this.setSize(450,200);
