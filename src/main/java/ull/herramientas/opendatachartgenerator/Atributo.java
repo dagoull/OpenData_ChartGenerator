@@ -1,11 +1,17 @@
 package ull.herramientas.opendatachartgenerator;
 
+/**
+ * \class Atributo
+ * \brief Clase que crea los atributos
+ * \author Joel Perez Ramos
+ *
+ */
 public class Atributo {
 	private String valor_;
 	private String id_;
 	
 	/**
-	 * Constructor de la clase Atributo
+	 * \brief Constructor de la clase Atributo
 	 */
 	public Atributo() {
 		super();
@@ -13,9 +19,9 @@ public class Atributo {
 	}
 	
 	/**
-	 * Constructor por lo que le pasa un id
+	 * \brief Constructor por lo que le pasa un id
 	 * y un valor nulo en la tabla
-	 * @param nombre_
+	 * \param nombre_
 	 */
 	public Atributo(String id) {
 		super();
@@ -24,9 +30,9 @@ public class Atributo {
 	}
 	
 	/**
-	 * Constructor por lo que se le pasa un id y un valor 
-	 * @param valor_
-	 * @param id
+	 * \brief Constructor por lo que se le pasa un id y un valor 
+	 * \param valor_
+	 * \param id
 	 */
 	public Atributo(String valor_, String id) {
 		super();
@@ -35,32 +41,32 @@ public class Atributo {
 	}
 	
 	/**
-	 * Metodo que retorna el valor del atributos
-	 * @return
+	 * \brief Metodo que retorna el valor del atributos
+	 * \return
 	 */
 	public String getValor() {
 		return valor_;
 	}
 
 	/**
-	 * Metodo que modifica el valor del atributo
-	 * @param valor_
+	 * \brief Metodo que modifica el valor del atributo
+	 * \param valor_
 	 */
 	public void setValor(String valor_) {
 		this.valor_ = valor_;
 	}
 	
 	/**
-	 * Metodo que retorna el id
-	 * @return
+	 * \brief Metodo que retorna el id
+	 * \return
 	 */
 	public String getId() {
 		return id_;
 	}
 	
 	/**
-	 * Metodo que modifica el id
-	 * @param id_
+	 * \brief Metodo que modifica el id
+	 * \param id_
 	 */
 	public void setId(String id_) {
 		this.id_ = id_;
