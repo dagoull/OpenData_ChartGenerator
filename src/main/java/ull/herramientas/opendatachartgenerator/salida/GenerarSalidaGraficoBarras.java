@@ -78,7 +78,7 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	public JFreeChart salidaPDF()
 	{
 		mSalida = ChartFactory.createBarChart(
-				"Gráfico de Barras", "Playa", "Turistas", mDatasetChar, PlotOrientation.VERTICAL, true, false, false
+				"Gráfico de Barras", "Barrios", "Turistas", mDatasetChar, PlotOrientation.VERTICAL, true, false, false
 		);
 		CategoryPlot tPlot = mSalida.getCategoryPlot();
 		CategoryAxis txAxis= tPlot.getDomainAxis();
