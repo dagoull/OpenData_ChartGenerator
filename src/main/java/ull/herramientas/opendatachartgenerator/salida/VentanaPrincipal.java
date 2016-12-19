@@ -114,8 +114,7 @@ public class VentanaPrincipal {
 						}
 						else if (rdbtntxt.isSelected())
 						{
-							urlDataset = "";
-
+							urlDataset = "https://rawgit.com/alu0100773408/OpenDataChartGenerator-ODCG/master/barrios.txt";
 						}
 
 					}
