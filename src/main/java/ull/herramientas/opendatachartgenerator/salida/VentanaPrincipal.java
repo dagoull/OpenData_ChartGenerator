@@ -66,12 +66,17 @@ public class VentanaPrincipal {
 		JRadioButton rdbtntxt = new JRadioButton(".txt");
 		rdbtntxt.setBounds(196, 143, 67, 23);
 		frame.getContentPane().add(rdbtntxt);
+		
+		JRadioButton rdbtnxls = new JRadioButton(".xls");
+		rdbtnxls.setBounds(265, 143, 63, 23);
+		frame.getContentPane().add(rdbtnxls);
 
 		rdbtnCsv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtntxt.isSelected())
 				{
 					rdbtntxt.setSelected(false);
+					rdbtnxls.setSelected(false);
 				}
 			}
 		});
@@ -81,9 +86,21 @@ public class VentanaPrincipal {
 				if (rdbtnCsv.isSelected())
 				{
 					rdbtnCsv.setSelected(false);
+					rdbtnxls.setSelected(false);
 				}
 			}
 		});
+		
+		rdbtnxls.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (rdbtnxls.isSelected())
+				{
+					rdbtntxt.setSelected(false);
+					rdbtnCsv.setSelected(false);
+				}
+			}
+		});
+		
         //Creación de título de aplicación
 		JLabel lblOpenDataChart = new JLabel("Open Data Chart Generator");
 		lblOpenDataChart.setFont(new Font("Tahoma", Font.BOLD, 23));
@@ -103,25 +120,28 @@ public class VentanaPrincipal {
 		JButton btnProcesarConjuntoDe = new JButton("Procesar conjunto de datos");
 		btnProcesarConjuntoDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Dataset dataset;
+				Dataset dataset = null;
 				try {
 					String urlDataset = "";
 					if (comboBox.getSelectedIndex() == 0)
 					{
 						if (rdbtnCsv.isSelected())
 						{
-							urlDataset="http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/1f86d613-d406-418e-8757-46bea561d9ed/download/barrios.xls";
-							//urlDataset = "http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv";
+							urlDataset = "http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/ee814891-ba52-4e7c-b9e6-017c1bc43b6b/download/barrios.csv";
+							dataset = new Dataset(urlDataset,0);
 						}
 						else if (rdbtntxt.isSelected())
 						{
 							urlDataset = "https://rawgit.com/alu0100773408/OpenDataChartGenerator-ODCG/master/barrios.txt";
-							
+							dataset = new Dataset(urlDataset,0);
 						}
-
+						
+						else if (rdbtnxls.isSelected())
+						{
+							urlDataset="http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/1f86d613-d406-418e-8757-46bea561d9ed/download/barrios.xls";
+							dataset = new Dataset(urlDataset,1);
+						}
 					}
-					//Se extrae y almacenan los datos del conjunto del url en un objeto de clase Dataset
-					dataset = new Dataset(urlDataset);
 					//Se crea la ventana de selección de gráficos de la información del conjunto de datos
 					SalidaGraficosFrame seleccion_graficos = new SalidaGraficosFrame(dataset);
 				} catch (IOException e) {
@@ -132,13 +152,5 @@ public class VentanaPrincipal {
 		});
 		btnProcesarConjuntoDe.setBounds(132, 184, 193, 23);
 		frame.getContentPane().add(btnProcesarConjuntoDe);
-
-
-
-
-
-
-
-
 	}
 }

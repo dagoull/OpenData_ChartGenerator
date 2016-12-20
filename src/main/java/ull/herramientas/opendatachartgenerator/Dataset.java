@@ -9,10 +9,12 @@ public class Dataset {
 	private ArrayList<Instancia> rows;
 	private String[] columnas;
 
-	public Dataset(String url) throws MalformedURLException, IOException
+	public Dataset(String url, int mode) throws MalformedURLException, IOException
 	{
-		//this.reader =  new Reader();
-		this.reader =  new Readerxls();
+		if (mode == 0)
+			this.reader =  new Readercsv();
+		if (mode == 1)
+			this.reader =  new Readerxls();
 		this.rows = new ArrayList<Instancia>();
 		this.rows = reader.leerdeURL(url);
 		this.columnas = reader.getNombres_atributos();

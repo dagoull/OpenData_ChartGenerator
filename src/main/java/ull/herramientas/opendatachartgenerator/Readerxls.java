@@ -1,16 +1,10 @@
 package ull.herramientas.opendatachartgenerator;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Scanner;
 
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -21,17 +15,14 @@ import org.apache.poi.ss.usermodel.Row;
  * @author Ángel
  *
  */
-public class Readerxls implements IReader {
-	private ArrayList<Instancia> instancias;
-	private String[] nombres_atributos;
+public class Readerxls extends IReader {
 
 	public Readerxls() {
-		this.instancias = new ArrayList<Instancia>();
+		super();
 	}
 
 	@Override
 	public ArrayList<Instancia> leerTodo(InputStream is) {
-
 		/**
 		 * \brief Inicializamos dos arraylists que nos serviran para almacenar la informacion del dataset
 		 */
@@ -127,59 +118,5 @@ public class Readerxls implements IReader {
 			e.printStackTrace();
 		}
 		return instancias;
-	}
-	
-	@Override
-	public ArrayList<Instancia> leerdeURL(String url) throws MalformedURLException, IOException {
-		InputStream is = new URL(url).openStream();
-		return leerTodo(is);
-	}
-
-	public ArrayList<Instancia> leerdeFichero(String file) throws MalformedURLException, IOException {
-		String url = new File(file).toURI().toURL().toString();
-		return leerdeURL(url);
-	}
-
-	public ArrayList<Instancia> leerDatos(String direccion) throws MalformedURLException, IOException {
-		if (isValidURL(direccion)) {
-			return leerdeURL(direccion);
-		} else {
-			return leerdeFichero(direccion);
-		}
-
-	}
-
-	public boolean isValidURL(String url) {
-
-		URL u = null;
-
-		try {
-			u = new URL(url);
-		} catch (MalformedURLException e) {
-			return false;
-		}
-
-		try {
-			u.toURI();
-		} catch (URISyntaxException e) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * @return the nombres_atributos
-	 */
-	public String[] getNombres_atributos() {
-		return nombres_atributos;
-	}
-
-	/**
-	 * @param nombres_atributos
-	 *            the nombres_atributos to set
-	 */
-	public void setNombres_atributos(String[] nombres_atributos) {
-		this.nombres_atributos = nombres_atributos;
 	}
 }
