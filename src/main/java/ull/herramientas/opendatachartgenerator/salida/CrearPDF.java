@@ -3,6 +3,7 @@ package ull.herramientas.opendatachartgenerator.salida;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.FileOutputStream;
+import java.util.logging.Logger;
 
 import org.jfree.chart.JFreeChart;
 
@@ -23,6 +24,7 @@ import com.lowagie.text.pdf.PdfWriter;
  */
 public abstract class CrearPDF
 {
+	private final Logger mlogConsola = Logger.getLogger(""); /// Salida por consola.
 	private int mAncho;
 	private int mAlto;
 	private Document mDocumento;
@@ -87,7 +89,7 @@ public abstract class CrearPDF
 				mDocumento.add(new Paragraph(mDatos));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			mlogConsola.log(null, e.getMessage());
 		}
 		mDocumento.close();
 	}

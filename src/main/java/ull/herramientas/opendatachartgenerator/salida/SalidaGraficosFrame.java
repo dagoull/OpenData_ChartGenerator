@@ -93,7 +93,7 @@ public class SalidaGraficosFrame
 	{
 		mRBtnGraficoBarra = new JRadioButton("Gráfico de Barra");
 		mRBtnGraficoBarra.setVisible(true);
-
+		mRBtnGraficoBarra.setSelected(true);
 		mRBtnGraficoBarra.addActionListener(
 				new ActionListener()
 				{
