@@ -1,6 +1,7 @@
 package ull.herramientas.opendatachartgenerator.salida;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import ull.herramientas.opendatachartgenerator.Dataset;
 import ull.herramientas.opendatachartgenerator.Instancia;
@@ -18,9 +19,10 @@ public class GenerarSalidaConsola implements IGenerarSalida
 {
 	private Dataset mDataset;
 	private String mSalida;
+	private final Logger mlogConsola = Logger.getLogger(""); /// Salida por consola.
 	/**
 	 * \brief Constructor que recibe un dataset
-	 * \param a_dataset, dataset que contiene la información a representar.
+	 * \param aDataset, dataset que contiene la información a representar.
 	 */
 	public GenerarSalidaConsola(Dataset aDataset)
 	{
@@ -45,7 +47,7 @@ public class GenerarSalidaConsola implements IGenerarSalida
 	@Override
 	public void salidaGrafica()
 	{
-		System.out.println(mSalida);
+		mlogConsola.log(null,mSalida);
 	}
 	@Override
 	public  String salidaPDF()

@@ -23,13 +23,13 @@ import com.lowagie.text.pdf.PdfWriter;
  */
 public abstract class CrearPDF
 {
-	private int m_ancho;
-	private int m_alto;
-	private Document m_documento;
-	private PdfWriter m_escribe;
-	private String m_nombreFichero;
-	private String m_datos;
-	private JFreeChart m_grafico;
+	private int mAncho;
+	private int mAlto;
+	private Document mDocumento;
+	private PdfWriter mEscribe;
+	private String mNombreFichero;
+	private String mDatos;
+	private JFreeChart mGrafico;
 	/**
 	 * \brief Constructor que recibe los datos de configuración de lo que imprimirá
 	 * \param aGrafico, Gráfico a imprimir en pdf (siendo null si no existe gráfico).
@@ -41,11 +41,11 @@ public abstract class CrearPDF
 	 */
 	public CrearPDF(JFreeChart aGrafico,String aDatos,String aNombreFichero, int aAncho, int aAlto, boolean aVertical)
 	{
-		m_grafico = aGrafico;
-		m_datos = aDatos;
-		m_nombreFichero = aNombreFichero;
-		m_ancho = aAncho;
-		m_alto = aAlto;
+		mGrafico = aGrafico;
+		mDatos = aDatos;
+		mNombreFichero = aNombreFichero;
+		mAncho = aAncho;
+		mAlto = aAlto;
 		initComponent(aVertical);
 	}
 	/**
@@ -55,10 +55,10 @@ public abstract class CrearPDF
 	private void initComponent(boolean vertical)
 	{
 		if(!vertical)
-			m_documento = new Document();
+			mDocumento = new Document();
 		else
-			m_documento = new Document(PageSize.A4.rotate());
-		m_escribe = null;
+			mDocumento = new Document(PageSize.A4.rotate());
+		mEscribe = null;
 	}
 	/**
 	 * \brief Método que escribe el dontenido en el documento pdf.
@@ -66,29 +66,29 @@ public abstract class CrearPDF
 	public void escribirGraficoEnPDF()
 	{
 		try {
-			m_escribe = PdfWriter.getInstance(m_documento, new FileOutputStream(
-					m_nombreFichero));
-			m_documento.open();
+			mEscribe = PdfWriter.getInstance(mDocumento, new FileOutputStream(
+					mNombreFichero));
+			mDocumento.open();
 			
-			PdfContentByte contentByte = m_escribe.getDirectContent();
-			PdfTemplate template = contentByte.createTemplate(m_ancho, m_alto);
+			PdfContentByte contentByte = mEscribe.getDirectContent();
+			PdfTemplate template = contentByte.createTemplate(mAncho, mAlto);
 			contentByte.addTemplate(template, 0, 0);
 			
-			if(m_grafico != null)
+			if(mGrafico != null)
 			{
-				Graphics2D graphics2d = template.createGraphics(m_ancho, m_alto,
+				Graphics2D graphics2d = template.createGraphics(mAncho, mAlto,
 						new DefaultFontMapper());
-				Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, m_ancho, m_alto);
-				m_grafico.draw(graphics2d, rectangle2d);
+				Rectangle2D rectangle2d = new Rectangle2D.Double(0, 0, mAncho, mAlto);
+				mGrafico.draw(graphics2d, rectangle2d);
 				graphics2d.dispose();
 			}
 			else
 			{
-				m_documento.add(new Paragraph(m_datos));
+				mDocumento.add(new Paragraph(mDatos));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		m_documento.close();
+		mDocumento.close();
 	}
 }

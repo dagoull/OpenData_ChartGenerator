@@ -28,18 +28,21 @@ public class SalidaGraficosFrame
 	private JButton mBtnGenerar;
 	private IGenerarSalida mSalida;
 
-	private String m_rutaGuardarPDF;
-	private String m_nombreSalidaFicheroPDF;
+	private String mRutaGuardarPDF;
+	private String mNombreSalidaFicheroPDF;
 	private Dataset mDataset;
 	private JFrame mVentana;
 
 	// CONSTRUCTOR/ES Y MÉTODOS
+	/**
+	 * \brief Constructor que recibe un dataset
+	 * \param aDataset, dataset con el que se trabajará para generar las salidas
+	 */
 	public SalidaGraficosFrame(Dataset aDataset)
 	{
 		mDataset = aDataset;
 		initComponet();
 	}
-
 	private void initComponet()
 	{
 		initRadioButton();
@@ -131,6 +134,10 @@ public class SalidaGraficosFrame
 		mBGrupoRadio.add(mRBtnGraficoPastel);
 		mBGrupoRadio.add(mRBtnConsola);
 	}
+	/**
+	 * \breif Método que lanza el explorador de archivos
+	 * Guarda en el directorio seleccionado el informe con la salida seleccionada.
+	 */
 	private void lanzarExploradorArchivos()
 	{
 		FicheroSalidaPDFDialog fic=new FicheroSalidaPDFDialog(mVentana);
@@ -141,20 +148,20 @@ public class SalidaGraficosFrame
 	 * \brief Método que se invoca cuando se pulse en generar pdf,
 	 * este se encargará de generar la salida adecuada.
 	 */
-	private void generarPDFPerformedJFreeChart(String a_directorio)
+	private void generarPDFPerformedJFreeChart(String aDirectorio)
 	{
-		m_rutaGuardarPDF = a_directorio + m_nombreSalidaFicheroPDF;
+		mRutaGuardarPDF = aDirectorio + mNombreSalidaFicheroPDF;
 
 		CrearPDF pdf = null;
 		if (mRBtnGraficoBarra.isSelected())
 		{
-			pdf = new CrearPDFBarras((JFreeChart) mSalida.salidaPDF(), m_rutaGuardarPDF);
+			pdf = new CrearPDFBarras((JFreeChart) mSalida.salidaPDF(), mRutaGuardarPDF);
 		} else if (mRBtnGraficoPastel.isSelected())
 		{
-			pdf = new CrearPDFPastel((JFreeChart) mSalida.salidaPDF(), m_rutaGuardarPDF);
+			pdf = new CrearPDFPastel((JFreeChart) mSalida.salidaPDF(), mRutaGuardarPDF);
 		} else if (mRBtnConsola.isSelected())
 		{
-			pdf = new CrearPDFConsola((String) mSalida.salidaPDF(), m_rutaGuardarPDF);
+			pdf = new CrearPDFConsola((String) mSalida.salidaPDF(), mRutaGuardarPDF);
 		}
 		pdf.escribirGraficoEnPDF();
 
@@ -164,10 +171,10 @@ public class SalidaGraficosFrame
 	 * \param a_salida, tipo de salida a generar
 	 * \param a_nombreFich, nombre del fichero .pdf
 	 */
-	private void actionPerformedJFreeChart(IGenerarSalida a_salida, String a_nombreFich)
+	private void actionPerformedJFreeChart(IGenerarSalida aSalida, String aNombreFich)
 	{
-		m_nombreSalidaFicheroPDF = a_nombreFich;
-		mSalida = a_salida;
+		mNombreSalidaFicheroPDF = aNombreFich;
+		mSalida = aSalida;
 		mSalida.salidaGrafica();
 	}
 }

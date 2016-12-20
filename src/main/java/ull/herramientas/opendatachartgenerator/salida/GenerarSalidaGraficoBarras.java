@@ -26,10 +26,13 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	private Dataset mDataset;
 	private JFreeChart mSalida;
 
-	// CONSTRUCTOR/ES Y METODOS
-	public GenerarSalidaGraficoBarras(Dataset aData)
+	/**
+	 * \brief Constructor que recibe un dataset
+	 * \param aDataset, dataset que contiene la información a representar.
+	 */
+	public GenerarSalidaGraficoBarras(Dataset aDataset)
 	{
-		mDataset = aData;
+		mDataset = aDataset;
 		configurarDatasetChart();
 		salidaPDF();
 		
@@ -78,7 +81,7 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 	public JFreeChart salidaPDF()
 	{
 		mSalida = ChartFactory.createBarChart(
-				"Gráfico de Barras", "Barrios", "Turistas", mDatasetChar, PlotOrientation.VERTICAL, true, false, false
+				"Gráfico de Barras", "Barrios", "Residentes", mDatasetChar, PlotOrientation.VERTICAL, true, false, false
 		);
 		CategoryPlot tPlot = mSalida.getCategoryPlot();
 		CategoryAxis txAxis= tPlot.getDomainAxis();

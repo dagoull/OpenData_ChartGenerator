@@ -27,6 +27,10 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 	private Dataset mDataset;
 
 	// CONSTRUCTOR/ES Y METODOS
+	/**
+	 * \brief Constructor que recibe un dataset
+	 * \param aDataset, dataset que contiene la información a representar.
+	 */
 	public GenerarSalidaGraficoPastel(Dataset aDataset)
 	{
 		mDataset = aDataset;
@@ -42,8 +46,7 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 		mDatasetChartPie = new DefaultPieDataset();
 
 		ArrayList<String> tBarrios = mDataset.getColumna(2);
-		double tTotalTurista=totalTuristas();
-		System.err.println(tTotalTurista);
+		double tTotalTurista=totalResidentes();
 		for (int i = 0; i < tBarrios.size(); i++)
 		{
 			ArrayList<Instancia> tArrInstancias = mDataset.getRows();
@@ -52,12 +55,16 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 				Instancia tInstancia = tArrInstancias.get(i);
 				Double tTotalTuristasPorBarrio = Double.parseDouble(tInstancia.getValorItem(26))
 						+ Double.parseDouble(tInstancia.getValorItem(48));
-				Double t_porcentajePorBarrio = (tTotalTuristasPorBarrio * 100)/tTotalTurista;
-				mDatasetChartPie.setValue(tBarrios.get(i), t_porcentajePorBarrio);
+				Double tPorcentajePorBarrio = (tTotalTuristasPorBarrio * 100)/tTotalTurista;
+				mDatasetChartPie.setValue(tBarrios.get(i), tPorcentajePorBarrio);
 			}
 		}
 	}
-	private double totalTuristas()
+	/**
+	 * \brief Método que calcula el total de residentes del dataset
+	 * \return, el número de residentes
+	 */
+	private double totalResidentes()
 	{
 		ArrayList<Instancia> tArrInstancias = mDataset.getRows();
 		double result = 0.0;
