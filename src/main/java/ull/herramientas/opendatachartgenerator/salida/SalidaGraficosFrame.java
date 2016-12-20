@@ -159,10 +159,11 @@ public class SalidaGraficosFrame
 		} else if (mRBtnGraficoPastel.isSelected())
 		{
 			pdf = new CrearPDFPastel((JFreeChart) mSalida.salidaPDF(), mRutaGuardarPDF);
-		} else if (mRBtnConsola.isSelected())
+		} else
 		{
 			pdf = new CrearPDFConsola((String) mSalida.salidaPDF(), mRutaGuardarPDF);
 		}
+		
 		pdf.escribirGraficoEnPDF();
 
 	}
