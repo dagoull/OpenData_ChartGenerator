@@ -18,6 +18,4 @@ public interface IReader {
 
 	public String[] getNombres_atributos();
 
-	
-
 }

@@ -11,7 +11,8 @@ public class Dataset {
 
 	public Dataset(String url) throws MalformedURLException, IOException
 	{
-		this.reader =  new Reader();
+		//this.reader =  new Reader();
+		this.reader =  new Readerxls();
 		this.rows = new ArrayList<Instancia>();
 		this.rows = reader.leerdeURL(url);
 		this.columnas = reader.getNombres_atributos();

@@ -50,6 +50,8 @@ public class Reader implements IReader{
 		return instancias;
 
 	}
+	
+	
 
 	@Override
 	public ArrayList<Instancia> leerdeURL(String url) throws MalformedURLException, IOException {
