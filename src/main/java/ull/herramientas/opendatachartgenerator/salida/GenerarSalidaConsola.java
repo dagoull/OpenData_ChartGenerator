@@ -18,8 +18,8 @@ import ull.herramientas.opendatachartgenerator.Instancia;
 public class GenerarSalidaConsola implements IGenerarSalida
 {
 	private Dataset mDataset;
-	private StringBuilder mSalida;
-	private final Logger mlogConsola = Logger.getLogger(""); /// Salida por consola.
+	private String mSalida;
+	private final Logger mlogConsola = Logger.getLogger(GenerarSalidaConsola.class.getName()); /// Salida por consola.
 	/**
 	 * \brief Constructor que recibe un dataset
 	 * \param aDataset, dataset que contiene la información a representar.
@@ -27,7 +27,7 @@ public class GenerarSalidaConsola implements IGenerarSalida
 	public GenerarSalidaConsola(Dataset aDataset)
 	{
 		mDataset = aDataset;
-		mSalida = new StringBuilder("BARRIOS \t\t\tNºMujeres \t\tNºHombres\n");
+		mSalida = "BARRIOS \t\t\tNºMujeres \t\tNºHombres\n";
 		configurarSalida();
 	}
 	/**
@@ -41,16 +41,17 @@ public class GenerarSalidaConsola implements IGenerarSalida
 		{
 			ArrayList<Instancia> tArrInstancias=mDataset.getRows();
 			
-				mSalida.append(tBarrios.get(i)+"\t\t\t"+tArrInstancias.get(i).getValorItem(48)+"\t\t"+tArrInstancias.get(i).getValorItem(26)+"\n");
+				mSalida+=tBarrios.get(i)+"\t\t\t"+tArrInstancias.get(i).getValorItem(48)+"\t\t"+tArrInstancias.get(i).getValorItem(26)+"\n";
 		}
 	}
 	@Override
 	public void salidaGrafica()
 	{
-		mlogConsola.log(null,mSalida.toString());
+		//System.out.println(mSalida);
+		mlogConsola.info(mSalida);
 	}
 	@Override
-	public  StringBuilder salidaPDF()
+	public  String salidaPDF()
 	{
 		return mSalida;
 	}

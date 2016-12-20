@@ -113,7 +113,7 @@ public class SalidaGraficosFrame
 					@Override
 					public void actionPerformed(ActionEvent e)
 					{
-						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(mDataset),"/InformeGraficoDeBarras.PDF");
+						actionPerformedJFreeChart(new GenerarSalidaGraficoPastel(mDataset),"/InformeGraficoDePastel.PDF");
 					}
 				}
 		);
