@@ -9,14 +9,20 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public abstract class IReader {
-	
+
 	protected ArrayList<Instancia> instancias;
 	protected String[] nombres_atributos;
-	
+
 	public IReader() {
 		this.instancias = new ArrayList<Instancia>();
 	}
 
+	/**
+	 * Método que lee todo el contenido de un flujo de entrada y extrae de él un array
+	 * de instancias de datos
+	 * @param is - flujo de entrada
+	 * @return array de instancias de datos
+	 */
 	public abstract ArrayList<Instancia> leerTodo(InputStream is);
 
 	/**
@@ -42,7 +48,7 @@ public abstract class IReader {
 		String url = new File(file).toURI().toURL().toString();
 		return leerdeURL(url);
 	}
-	
+
 	/**
 	 * \brief Metodo para leer los datos desde una url
 	 * \param direccion
@@ -58,8 +64,8 @@ public abstract class IReader {
 		}
 
 	}
-	
-	
+
+
 	/**
 	 * \brief Metodo booleano que nos dice si la url esta correcta
 	 * \param url
@@ -73,13 +79,13 @@ public abstract class IReader {
 		catch (MalformedURLException e) {
 			return false;
 		}
-		
+
 		try {
 			u.toURI();
 		} catch (URISyntaxException e) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -89,7 +95,7 @@ public abstract class IReader {
 	public String[] getNombres_atributos() {
 		return nombres_atributos;
 	}
-	
+
 	/**
 	 * \param nombres_atributos the nombres_atributos to set
 	 */

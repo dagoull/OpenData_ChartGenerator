@@ -4,8 +4,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Lector de ficheros de conjuntos de datos de formato .csv
+ * @author Mauricio
+ *
+ */
 public class Readercsv extends IReader{
-	
+
 	public Readercsv() {
 		super();
 	}
