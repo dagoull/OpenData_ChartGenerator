@@ -1,0 +1,6 @@
+language: java
+
+# This will run on Travis' 'new' container-based infrastructure
+sudo: false
+script: 
+- mvn clean verify
