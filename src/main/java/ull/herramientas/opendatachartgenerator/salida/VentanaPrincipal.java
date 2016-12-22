@@ -5,10 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
 
 import ull.herramientas.opendatachartgenerator.Dataset;
-import ull.herramientas.opendatachartgenerator.IReader;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
