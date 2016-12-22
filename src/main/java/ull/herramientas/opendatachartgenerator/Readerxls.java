@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -28,7 +30,7 @@ public class Readerxls extends IReader {
 		 */
 		ArrayList<String> names=new ArrayList<String>();
 		ArrayList<String> values=new ArrayList<String>();
-		
+
 		/**
 		 * \brief Ademas de una variable que indicara si la columna que estamos recorriendo es la primera o no
 		 */
@@ -42,6 +44,7 @@ public class Readerxls extends IReader {
 			workbook = new HSSFWorkbook(is);
 		} catch (IOException e) {
 			e.printStackTrace();
+			mlogConsola.log(Level.INFO,"Error", e);
 		}
 		HSSFSheet sheet = workbook.getSheetAt(0);
 		/**
@@ -61,7 +64,7 @@ public class Readerxls extends IReader {
 			Iterator<Cell> cellIterator = row.cellIterator();
 
 			Cell celda;
-			
+
 			/**
 			 * \brief Si la fila que recorremos es la primera, almacenaremos los nombres de los atributos en el arraylist names
 			 */
@@ -78,7 +81,7 @@ public class Readerxls extends IReader {
 				for(int index=0;index<names.size();index++){
 					nombres_atributos[index]=names.get(index);
 				}
-				
+
 			/**
 			 * \brief En caso contrario se almacenaran los atributos en el arraylist values
 			 */
@@ -88,18 +91,18 @@ public class Readerxls extends IReader {
 					if(celda.getCellType()==Cell.CELL_TYPE_NUMERIC){
 						values.add(String.valueOf(celda.getNumericCellValue()));
 					}else
-						values.add(celda.getStringCellValue());	
+						values.add(celda.getStringCellValue());
 				}
-				
+
 				/**
 				 * \brief Pasamos los datos almacenados a un array de string para utilizarlo posteriormente
 				 */
 				valores=new String[values.size()];
-				
+
 				for(int index3=0;index3<values.size();index3++){
 					valores[index3]=values.get(index3);
 				}
-				
+
 				/**
 				 *  Los arrays de strings se utilizan entonces para generar los vectores de atributos que crearan las instancias del dataset
 				 */
@@ -111,11 +114,12 @@ public class Readerxls extends IReader {
 				values.clear();
 			}
 		}
-		
+
 		try {
 			workbook.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			mlogConsola.log(Level.INFO,"Error", e);
 		}
 		return instancias;
 	}
