@@ -1,7 +1,35 @@
-
 language: java
 sudo: false
 jdk:
   - oraclejdk8
+  
+# Blacklist
+branches:
+  except:
+    - gh-pages
+# Environment variables
+env:
+  global:
+    - GH_REPO_NAME: OpenDataChartGenerator-ODCG
+    - DOXYFILE: $TRAVIS_BUILD_DIR/OpenDataChartGenerator-ODCG
+    - GH_REPO_REF: https://github.com/alu0100773408/OpenDataChartGenerator-ODCG
+# Install dependencies
+addons:
+  apt:
+    packages:
+      - doxygen
+      - doxygen-doc
+      - doxygen-latex
+      - doxygen-gui
+      - graphviz
+# Build your code e.g. by calling make
 script: 
-  - mvn install
+- mvn clean verify
+- mvn install
+- mvn javadoc:javadoc
+# Generate and deploy documentation
+after_success:
+  - cd $TRAVIS_BUILD_DIR
+  - ls
+  - chmod +x generateDocumentationAndDeploy.sh
+  - ./generateDocumentationAndDeploy.sh
