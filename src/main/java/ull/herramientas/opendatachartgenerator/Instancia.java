@@ -12,14 +12,14 @@ public class Instancia {
 	/**
 	 * \brief ArrayList de tipo Atributo
 	 */
-	private ArrayList<Atributo> inst_;
+	private ArrayList<Atributo> inst;
 
 	/**
 	 * \brief Constructor que almacenará la instancia
 	 */
 	public Instancia() {
 		super();
-		this.inst_ = new ArrayList<Atributo>();
+		this.inst = new ArrayList<Atributo>();
 	}
 	
 	/**
@@ -27,25 +27,25 @@ public class Instancia {
 	 * \param atributos
 	 */
 	public Instancia(Atributo[] atributos){
-		this.inst_ = new ArrayList<Atributo>();
+		this.inst = new ArrayList<Atributo>();
 		for (int i = 0; i<atributos.length; i++)
-			inst_.add(atributos[i]);
+			inst.add(atributos[i]);
 	}
 
 	/**
 	 * \brief Metodo que retorna la instancia
 	 * \return
 	 */
-	public ArrayList<Atributo> getInst_() {
-		return inst_;
+	public ArrayList<Atributo> getInst() {
+		return inst;
 	}
 
 	/**
 	 * \brief Metodo que modifica la instancia
 	 * \param inst_
 	 */
-	public void setInst_(ArrayList<Atributo> inst_) {
-		this.inst_ = inst_;
+	public void setInst_(ArrayList<Atributo> inst) {
+		this.inst = inst;
 	}
 
 	/**
@@ -53,15 +53,15 @@ public class Instancia {
 	 * \param A
 	 */
 	public void addAtributo(Atributo A) {
-		inst_.add(A);
+		inst.add(A);
 	}
 
 	/**
 	 * \brief Metodo que borra un atributo de la instancia
 	 * \param A
 	 */
-	public void removeAtributo(Atributo A) {
-		inst_.remove(A);
+	public void removeAtributo(Atributo a) {
+		inst.remove(a);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class Instancia {
 	 * \return
 	 */
 	public String getValorItem(int pos) {
-		return inst_.get(pos).getValor();
+		return inst.get(pos).getValor();
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class Instancia {
 	 * \param val
 	 */
 	public void setValorItem(int pos, String val) {
-		inst_.get(pos).setValor(val);
+		inst.get(pos).setValor(val);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class Instancia {
 	 * \return
 	 */
 	public String getIdItem(int pos) {
-		return inst_.get(pos).getId();
+		return inst.get(pos).getId();
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class Instancia {
 	 * \param i
 	 */
 	public void setIdItem(int pos, String i) {
-		inst_.get(pos).setId(i);
+		inst.get(pos).setId(i);
 	}
 
 	/**
@@ -109,6 +109,6 @@ public class Instancia {
 	 * \return
 	 */
 	public int size() {
-		return inst_.size();
+		return inst.size();
 	}
 }

@@ -7,15 +7,14 @@ package ull.herramientas.opendatachartgenerator;
  *
  */
 public class Atributo {
-	private String valor_;
-	private String id_;
+	private String valor;
+	private String id;
 	
 	/**
 	 * \brief Constructor de la clase Atributo
 	 */
 	public Atributo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
@@ -25,8 +24,8 @@ public class Atributo {
 	 */
 	public Atributo(String id) {
 		super();
-		this.valor_ = "";
-		this.id_ = id;
+		this.valor = "";
+		this.id = id;
 	}
 	
 	/**
@@ -34,10 +33,10 @@ public class Atributo {
 	 * \param valor_
 	 * \param id
 	 */
-	public Atributo(String valor_, String id) {
+	public Atributo(String valor, String id) {
 		super();
-		this.valor_ = valor_;
-		this.id_ = id;
+		this.valor = valor;
+		this.id = id;
 	}
 	
 	/**
@@ -45,15 +44,15 @@ public class Atributo {
 	 * \return
 	 */
 	public String getValor() {
-		return valor_;
+		return valor;
 	}
 
 	/**
 	 * \brief Metodo que modifica el valor del atributo
 	 * \param valor_
 	 */
-	public void setValor(String valor_) {
-		this.valor_ = valor_;
+	public void setValor(String valor) {
+		this.valor = valor;
 	}
 	
 	/**
@@ -61,14 +60,14 @@ public class Atributo {
 	 * \return
 	 */
 	public String getId() {
-		return id_;
+		return id;
 	}
 	
 	/**
 	 * \brief Metodo que modifica el id
 	 * \param id_
 	 */
-	public void setId(String id_) {
-		this.id_ = id_;
+	public void setId(String id) {
+		this.id = id;
 	}
 }

@@ -88,7 +88,7 @@ public class Dataset {
 	 */
 	public ArrayList<Atributo> getInstancia(int i)
 	{
-		return rows.get(i).getInst_();
+		return rows.get(i).getInst();
 	}
 
 	/**
