@@ -49,17 +49,14 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 
 		ArrayList<String> tBarrios = mDataset.getColumna(2);
 		double tTotalTurista=totalResidentes();
+		ArrayList<Instancia> tArrInstancias = mDataset.getRows();
 		for (int i = 0; i < tBarrios.size(); i++)
 		{
-			ArrayList<Instancia> tArrInstancias = mDataset.getRows();
-			for (int j = 0; j < tArrInstancias.size(); j++)
-			{
-				Instancia tInstancia = tArrInstancias.get(i);
-				Double tTotalTuristasPorBarrio = Double.parseDouble(tInstancia.getValorItem(26))
-						+ Double.parseDouble(tInstancia.getValorItem(48));
-				Double tPorcentajePorBarrio = (tTotalTuristasPorBarrio * 100)/tTotalTurista;
-				mDatasetChartPie.setValue(tBarrios.get(i), tPorcentajePorBarrio);
-			}
+			Instancia tInstancia = tArrInstancias.get(i);
+			Double tTotalTuristasPorBarrio = Double.parseDouble(tInstancia.getValorItem(26))
+					+ Double.parseDouble(tInstancia.getValorItem(48));
+			Double tPorcentajePorBarrio = (tTotalTuristasPorBarrio * 100)/tTotalTurista;
+			mDatasetChartPie.setValue(tBarrios.get(i), tPorcentajePorBarrio);
 		}
 	}
 	/**
