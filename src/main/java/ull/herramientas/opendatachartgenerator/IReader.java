@@ -7,11 +7,16 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import ull.herramientas.opendatachartgenerator.salida.CrearPDF;
 
 public abstract class IReader {
 
 	protected ArrayList<Instancia> instancias;
 	protected String[] nombres_atributos;
+	protected final Logger mlogConsola = Logger.getLogger(IReader.class.getName());
 
 	public IReader() {
 		this.instancias = new ArrayList<Instancia>();
@@ -77,12 +82,14 @@ public abstract class IReader {
 			u = new URL(url);
 		}
 		catch (MalformedURLException e) {
+			mlogConsola.log(Level.INFO,"Error", e);
 			return false;
 		}
 
 		try {
 			u.toURI();
 		} catch (URISyntaxException e) {
+			mlogConsola.log(Level.INFO,"Error", e);
 			return false;
 		}
 

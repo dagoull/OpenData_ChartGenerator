@@ -8,11 +8,14 @@ import java.awt.Font;
 import javax.swing.JTextField;
 
 import ull.herramientas.opendatachartgenerator.Dataset;
+import ull.herramientas.opendatachartgenerator.IReader;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
@@ -25,6 +28,7 @@ import javax.swing.JComboBox;
 public class VentanaPrincipal {
 
 	private JFrame frame;
+	private final static Logger mlogConsola = Logger.getLogger(VentanaPrincipal.class.getName());
 
 	/**
 	 * Lanza la aplicación.
@@ -36,6 +40,7 @@ public class VentanaPrincipal {
 					VentanaPrincipal window = new VentanaPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
+					mlogConsola.log(Level.INFO,"Error", e);
 					e.printStackTrace();
 				}
 			}
@@ -66,7 +71,7 @@ public class VentanaPrincipal {
 		JRadioButton rdbtntxt = new JRadioButton(".txt");
 		rdbtntxt.setBounds(196, 143, 67, 23);
 		frame.getContentPane().add(rdbtntxt);
-		
+
 		JRadioButton rdbtnxls = new JRadioButton(".xls");
 		rdbtnxls.setBounds(265, 143, 63, 23);
 		frame.getContentPane().add(rdbtnxls);
@@ -90,7 +95,7 @@ public class VentanaPrincipal {
 				}
 			}
 		});
-		
+
 		rdbtnxls.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rdbtnxls.isSelected())
@@ -100,7 +105,7 @@ public class VentanaPrincipal {
 				}
 			}
 		});
-		
+
         //Creación de título de aplicación
 		JLabel lblOpenDataChart = new JLabel("Open Data Chart Generator");
 		lblOpenDataChart.setFont(new Font("Tahoma", Font.BOLD, 23));
@@ -135,7 +140,7 @@ public class VentanaPrincipal {
 							urlDataset = "https://rawgit.com/alu0100773408/OpenDataChartGenerator-ODCG/master/barrios.txt";
 							dataset = new Dataset(urlDataset,0);
 						}
-						
+
 						else if (rdbtnxls.isSelected())
 						{
 							urlDataset="http://www.santacruzdetenerife.es/opendata/dataset/8363b662-0bdc-47e1-b9f6-65b536714f29/resource/1f86d613-d406-418e-8757-46bea561d9ed/download/barrios.xls";
@@ -147,6 +152,7 @@ public class VentanaPrincipal {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					mlogConsola.log(Level.INFO,"Error", e);
 				}
 			}
 		});
