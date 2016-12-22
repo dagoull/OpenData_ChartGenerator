@@ -26,7 +26,7 @@ addons:
 script: 
 - mvn clean verify
 - mvn install
-- mvn javadoc:javadoc
+#- mvn javadoc:javadoc
 # Generate and deploy documentation
 after_success:
   - cd $TRAVIS_BUILD_DIR
