@@ -52,10 +52,9 @@ public class GenerarSalidaGraficoBarras implements IGenerarSalida
 			{*/
 				mDatasetChar = new DefaultCategoryDataset();
 				ArrayList<String> tBarrios= mDataset.getColumna(2);
-				
+				ArrayList<Instancia> tArrInstancias=mDataset.getRows();
 				for (int i = 0; i < tBarrios.size(); i++)
 				{
-					ArrayList<Instancia> tArrInstancias=mDataset.getRows();
 					Instancia t_instancia = tArrInstancias.get(i);
 					mDatasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(26)),mDataset.getNombreAtributo(26), tBarrios.get(i));//Hombres
 					mDatasetChar.addValue(Double.parseDouble(t_instancia.getValorItem(48)),mDataset.getNombreAtributo(48), tBarrios.get(i));//Mujeres
