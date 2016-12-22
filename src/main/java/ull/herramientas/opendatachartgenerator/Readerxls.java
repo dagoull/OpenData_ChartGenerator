@@ -43,7 +43,6 @@ public class Readerxls extends IReader {
 		try {
 			workbook = new HSSFWorkbook(is);
 		} catch (IOException e) {
-			e.printStackTrace();
 			mlogConsola.log(Level.INFO,"Error", e);
 		}
 		HSSFSheet sheet = workbook.getSheetAt(0);
@@ -118,7 +117,6 @@ public class Readerxls extends IReader {
 		try {
 			workbook.close();
 		} catch (IOException e) {
-			e.printStackTrace();
 			mlogConsola.log(Level.INFO,"Error", e);
 		}
 		return instancias;

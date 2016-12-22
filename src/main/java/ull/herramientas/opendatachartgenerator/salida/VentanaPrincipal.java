@@ -41,7 +41,6 @@ public class VentanaPrincipal {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					mlogConsola.log(Level.INFO,"Error", e);
-					e.printStackTrace();
 				}
 			}
 		});
@@ -150,8 +149,6 @@ public class VentanaPrincipal {
 					//Se crea la ventana de selección de gráficos de la información del conjunto de datos
 					SalidaGraficosFrame seleccion_graficos = new SalidaGraficosFrame(dataset);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					mlogConsola.log(Level.INFO,"Error", e);
 				}
 			}
