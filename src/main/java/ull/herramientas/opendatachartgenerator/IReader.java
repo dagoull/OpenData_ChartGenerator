@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import ull.herramientas.opendatachartgenerator.salida.CrearPDF;
-
 /**
  * \class Clase abstracta para leer los distintos ficheros.
  * 

@@ -3,7 +3,6 @@ package ull.herramientas.opendatachartgenerator.salida;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.FileOutputStream;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.jfree.chart.JFreeChart;
