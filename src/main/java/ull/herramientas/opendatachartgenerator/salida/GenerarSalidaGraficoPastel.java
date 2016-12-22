@@ -92,7 +92,7 @@ public class GenerarSalidaGraficoPastel implements IGenerarSalida
 	@Override
 	public JFreeChart salidaPDF()
 	{
-		mSalida = ChartFactory.createPieChart("Gráfico de Pastel", mDatasetChartPie, true, true, false);
+		mSalida = ChartFactory.createPieChart("Gráfico de Pastel", mDatasetChartPie, true, false, false);
 
 		PiePlot tPlot = (PiePlot) mSalida.getPlot();/// añade el porcetaje a la  etiqueta
 		tPlot.setSimpleLabels(true);
