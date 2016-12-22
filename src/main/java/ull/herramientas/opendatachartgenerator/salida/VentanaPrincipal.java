@@ -19,9 +19,12 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 
 /**
- * Ventana principal de la aplicación
- * @author Mauricio
- *
+ * \class Ventana principal de la aplicación
+ * 
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public class VentanaPrincipal {
 
@@ -29,7 +32,7 @@ public class VentanaPrincipal {
 	private final static Logger mlogConsola = Logger.getLogger(VentanaPrincipal.class.getName());
 
 	/**
-	 * Lanza la aplicación.
+	 * \brief Lanza la aplicación.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,14 +48,14 @@ public class VentanaPrincipal {
 	}
 
 	/**
-	 * Crea la aplicación.
+	 * \brief Crea la aplicación.
 	 */
 	public VentanaPrincipal() {
 		initialize();
 	}
 
 	/**
-	 * Inicializa los contenidos del frame.
+	 * \brief Inicializa los contenidos del frame.
 	 */
 	private void initialize() {
 		//Creación de ventana

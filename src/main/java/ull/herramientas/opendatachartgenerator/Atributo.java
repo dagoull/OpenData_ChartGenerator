@@ -2,6 +2,7 @@ package ull.herramientas.opendatachartgenerator;
 
 /**
  * \class Atributo \brief Clase que crea los atributos
+ * 
  * \author Orlandy Ariel Sánchez Acosta
  * \author Joel Pérez Ramos
  * \author Mauricio José Orta Rodríguez

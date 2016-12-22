@@ -3,8 +3,11 @@ package ull.herramientas.opendatachartgenerator.salida;
 /**
  * \interface IGenerarSalida 
  * \brief interfaz para generar las salidas
- * \author Orlandy Ariel Sánchez A.
- *
+ * 
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public interface IGenerarSalida
 {
@@ -16,7 +19,7 @@ public interface IGenerarSalida
 	public void salidaGrafica();
 	/**
 	 * \brief Método que obtiene una salida
-	 * @return, devuelve un objeto con los datos necesarios para imprimir en pdf
+	 * \return, devuelve un objeto con los datos necesarios para imprimir en pdf
 	 */
 	public Object salidaPDF();
 }

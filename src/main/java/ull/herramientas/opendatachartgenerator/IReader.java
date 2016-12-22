@@ -14,6 +14,7 @@ import ull.herramientas.opendatachartgenerator.salida.CrearPDF;
 
 /**
  * \class Clase abstracta para leer los distintos ficheros.
+ * 
  * \author Orlandy Ariel Sánchez Acosta
  * \author Joel Pérez Ramos
  * \author Mauricio José Orta Rodríguez

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * \class Instancia \brief Clase que almacenará las distintas instancias del dataset.
+ * 
  * \author Orlandy Ariel Sánchez Acosta
  * \author Joel Pérez Ramos
  * \author Mauricio José Orta Rodríguez

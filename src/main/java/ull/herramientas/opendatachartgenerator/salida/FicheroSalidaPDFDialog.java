@@ -14,8 +14,11 @@ import javax.swing.JTextField;
  * \class FicheroSalidaPDFDialog 
  * \brief clase para seleccionar el nombre del fichero donde se va a guardar
  * Los gráficos se guardaran en el lugar indicado en el asistende.
- * \author Orlandy Ariel Sánchez A.
- *
+ * 
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public class FicheroSalidaPDFDialog extends JDialog
 {

@@ -12,8 +12,10 @@ import ull.herramientas.opendatachartgenerator.Instancia;
  * este informe se mostrará por la consola, en ella mostrará
  * tuplas con la información barrio, numero de mujeres, numero de hombres
  * 
- * \author Orlandy Ariel Sánchez A.
- *
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public class GenerarSalidaConsola implements IGenerarSalida
 {

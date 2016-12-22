@@ -20,8 +20,11 @@ import com.lowagie.text.pdf.PdfWriter;
  * \brief Clase abstracta utilizada imprimir en un documento pdf
  * esta clase será común a todas las clases de crear, según el tipo 
  * imprimirá gráficos (de varios tipos) o texto.
- * \author Orlandy Ariel Sánchez A.
- *
+ * 
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public abstract class CrearPDF
 {

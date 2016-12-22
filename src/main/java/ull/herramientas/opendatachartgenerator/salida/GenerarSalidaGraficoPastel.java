@@ -16,8 +16,10 @@ import ull.herramientas.opendatachartgenerator.Instancia;
  * \class GenerarSalidaGraficoPastel
  * \brief clase encargarda de mostrar un gráfico de pastel
  * 
- * \author Orlandy Ariel Sánchez A.
- *
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public class GenerarSalidaGraficoPastel implements IGenerarSalida
 {

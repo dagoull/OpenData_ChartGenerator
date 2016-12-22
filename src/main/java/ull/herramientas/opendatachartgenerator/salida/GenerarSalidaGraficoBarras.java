@@ -17,8 +17,10 @@ import ull.herramientas.opendatachartgenerator.Instancia;
  * \class GenerarSalidaGraficoBarras
  * \brief clase encargarda de mostrar un gráfico de barras
  * 
- * \author Orlandy Ariel Sánchez A.
- *
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public class GenerarSalidaGraficoBarras implements IGenerarSalida
 { // ATRIBUTOS

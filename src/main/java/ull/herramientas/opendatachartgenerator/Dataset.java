@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 /**
  * \class Clase que representa a un conjunto de datos
+ * 
  * \author Orlandy Ariel Sánchez Acosta
  * \author Joel Pérez Ramos
  * \author Mauricio José Orta Rodríguez
