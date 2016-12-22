@@ -24,7 +24,7 @@ public class Readerxls extends IReader {
 	}
 
 	@Override
-	public ArrayList<Instancia> leerTodo(InputStream is) {
+	public ArrayList<Instancia> leerTodo(InputStream is) throws IOException {
 		/**
 		 * \brief Inicializamos dos arraylists que nos serviran para almacenar la informacion del dataset
 		 */
@@ -39,12 +39,8 @@ public class Readerxls extends IReader {
 		/**
 		 * \brief Utilizaremos una variable workbook especial para leer el fichero excel
 		 */
-		HSSFWorkbook workbook=null;
-		try {
-			workbook = new HSSFWorkbook(is);
-		} catch (IOException e) {
-			mlogConsola.log(Level.INFO,"Error", e);
-		}
+		HSSFWorkbook workbook = new HSSFWorkbook(is);
+
 		HSSFSheet sheet = workbook.getSheetAt(0);
 		/**
 		 * \brief Comenzamos a recorrer el fichero por filas (instancias)
