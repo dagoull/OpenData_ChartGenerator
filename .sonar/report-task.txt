@@ -1,5 +1,5 @@
 projectKey=ull.herramientas.opendatachartgenerator
 serverUrl=http://localhost:9000
 dashboardUrl=http://localhost:9000/dashboard/index/ull.herramientas.opendatachartgenerator
-ceTaskId=AVkj8STYpF5CNNiotRtj
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AVkj8STYpF5CNNiotRtj
+ceTaskId=AVkkAewGpF5CNNiotRtk
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVkkAewGpF5CNNiotRtk
