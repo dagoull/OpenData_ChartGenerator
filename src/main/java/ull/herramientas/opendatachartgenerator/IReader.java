@@ -27,8 +27,9 @@ public abstract class IReader {
 	 * de instancias de datos
 	 * @param is - flujo de entrada
 	 * @return array de instancias de datos
+	 * @throws IOException
 	 */
-	public abstract ArrayList<Instancia> leerTodo(InputStream is);
+	public abstract ArrayList<Instancia> leerTodo(InputStream is) throws IOException;
 
 	/**
 	 * \brief Metodo para leer por url
