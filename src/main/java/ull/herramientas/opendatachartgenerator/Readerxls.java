@@ -14,8 +14,10 @@ import org.apache.poi.ss.usermodel.Row;
 
 /**
  * \class Clase Readerxls que lee ficheros de formato xls (Excel hasta la version 2007)
- * @author Ángel
- *
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public class Readerxls extends IReader {
 

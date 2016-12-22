@@ -5,16 +5,27 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Lector de ficheros de conjuntos de datos de formato .csv
- * @author Mauricio
- *
+ * \class Lector de ficheros de conjuntos de datos de formato .csv
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public class Readercsv extends IReader{
 
+	/**
+	 * \brief Constructor.
+	 */
 	public Readercsv() {
 		super();
 	}
 
+	/**
+	 * \brief Método que lee todo el contenido de un flujo de entrada y extrae de él un array de instancias de datos
+	 * \param is - flujo de entrada
+	 * \return array de instancias de datos
+	 * \throws IOException
+	 */
 	@Override
 	public ArrayList<Instancia> leerTodo(InputStream is) {
 		Scanner rd = new Scanner(is);
@@ -40,6 +51,5 @@ public class Readercsv extends IReader{
 			i++;
 		}
 		return instancias;
-
 	}
 }

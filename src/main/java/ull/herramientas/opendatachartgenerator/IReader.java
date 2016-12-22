@@ -12,6 +12,13 @@ import java.util.logging.Logger;
 
 import ull.herramientas.opendatachartgenerator.salida.CrearPDF;
 
+/**
+ * \class Clase abstracta para leer los distintos ficheros.
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
+ */
 public abstract class IReader {
 
 	protected ArrayList<Instancia> instancias;
@@ -23,11 +30,10 @@ public abstract class IReader {
 	}
 
 	/**
-	 * Método que lee todo el contenido de un flujo de entrada y extrae de él un array
-	 * de instancias de datos
-	 * @param is - flujo de entrada
-	 * @return array de instancias de datos
-	 * @throws IOException
+	 * \brief Método que lee todo el contenido de un flujo de entrada y extrae de él un array de instancias de datos
+	 * \param is - flujo de entrada
+	 * \return array de instancias de datos
+	 * \throws IOException
 	 */
 	public abstract ArrayList<Instancia> leerTodo(InputStream is) throws IOException;
 
@@ -71,7 +77,6 @@ public abstract class IReader {
 
 	}
 
-
 	/**
 	 * \brief Metodo booleano que nos dice si la url esta correcta
 	 * \param url
@@ -110,5 +115,4 @@ public abstract class IReader {
 	public void setNombres_atributos(String[] nombres_atributos) {
 		this.nombres_atributos = nombres_atributos;
 	}
-
 }

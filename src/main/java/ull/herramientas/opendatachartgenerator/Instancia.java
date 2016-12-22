@@ -3,10 +3,11 @@ package ull.herramientas.opendatachartgenerator;
 import java.util.ArrayList;
 
 /**
- * \class Instancia
- * \brief Clase que almacenará las distintas instancias del dataset.
- * \author Joel Perez Ramos
- *
+ * \class Instancia \brief Clase que almacenará las distintas instancias del dataset.
+ * \author Orlandy Ariel Sánchez Acosta
+ * \author Joel Pérez Ramos
+ * \author Mauricio José Orta Rodríguez
+ * \author Ángel Rodríguez Negrin
  */
 public class Instancia {
 	/**
@@ -21,19 +22,19 @@ public class Instancia {
 		super();
 		this.inst = new ArrayList<Atributo>();
 	}
-	
+
 	/**
-	 * \brief Constructor que almacenará un conjunto de datos
+	 * \brief Constructor que almacenará un conjunto de datos 
 	 * \param atributos
 	 */
-	public Instancia(Atributo[] atributos){
+	public Instancia(Atributo[] atributos) {
 		this.inst = new ArrayList<Atributo>();
-		for (int i = 0; i<atributos.length; i++)
+		for (int i = 0; i < atributos.length; i++)
 			inst.add(atributos[i]);
 	}
 
 	/**
-	 * \brief Metodo que retorna la instancia
+	 * \brief Metodo que retorna la instancia 
 	 * \return
 	 */
 	public ArrayList<Atributo> getInst() {
@@ -41,33 +42,32 @@ public class Instancia {
 	}
 
 	/**
-	 * \brief Metodo que modifica la instancia
-	 * \param inst_
+	 * \brief Metodo que modifica la instancia 
+	 * \param inst
 	 */
 	public void setInst_(ArrayList<Atributo> inst) {
 		this.inst = inst;
 	}
 
 	/**
-	 * \brief Metodo que añade un atributo a la instancia
-	 * \param A
+	 * \brief Metodo que añade un atributo a la instancia 
+	 * \param a
 	 */
-	public void addAtributo(Atributo A) {
-		inst.add(A);
+	public void addAtributo(Atributo a) {
+		inst.add(a);
 	}
 
 	/**
-	 * \brief Metodo que borra un atributo de la instancia
-	 * \param A
+	 * \brief Metodo que borra un atributo de la instancia 
+	 * \param a
 	 */
 	public void removeAtributo(Atributo a) {
 		inst.remove(a);
 	}
 
 	/**
-	 * \brief Metodo que retorna el valor de una posicion
-	 * de la instancia
-	 * \param pos
+	 * \brief Metodo que retorna el valor de una posicion de la instancia 
+	 * \param pos 
 	 * \return
 	 */
 	public String getValorItem(int pos) {
@@ -75,9 +75,8 @@ public class Instancia {
 	}
 
 	/**
-	 * \brief Metodo que modifica el valor de una posicion
-	 * de la instancia
-	 * \param pos
+	 * \brief Metodo que modifica el valor de una posicion de la instancia
+	 * \param pos 
 	 * \param val
 	 */
 	public void setValorItem(int pos, String val) {
@@ -85,9 +84,8 @@ public class Instancia {
 	}
 
 	/**
-	 * \brief Metodo que retorna el id de una posicion
-	 * de la instancia
-	 * \param pos
+	 * \brief Metodo que retorna el id de una posicion de la instancia 
+	 * \param pos 
 	 * \return
 	 */
 	public String getIdItem(int pos) {
@@ -95,8 +93,7 @@ public class Instancia {
 	}
 
 	/**
-	 * \brief Metodo que modifica el id de una posicion
-	 * de la instancia
+	 * \brief Metodo que modifica el id de una posicion de la instancia 
 	 * \param pos
 	 * \param i
 	 */
@@ -105,7 +102,7 @@ public class Instancia {
 	}
 
 	/**
-	 * \brief Metodo que retorna el tamaño
+	 * \brief Metodo que retorna el tamaño 
 	 * \return
 	 */
 	public int size() {
