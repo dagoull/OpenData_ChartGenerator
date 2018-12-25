@@ -1,10 +1,4 @@
-# OpenDataChartGenerator-ODCG
-## Proyecto final de la asignatura Laboratorio de Desarrollo y Herramientas.
-Para el desarrollo del proyecto se hará grupo, este está formado por:
-* [Orlandy Ariel Sánchez Acosta](https://github.com/alu0100773408)
-* [Joel Pérez Ramos](https://github.com/alu0100723304)
-* [Mauricio José Orta Rodríguez](https://github.com/mauriciojorta)
-* [Angel Rodriguez Negrin](https://github.com/alu0100782974)
+# Proyecto de la asignatura Laboratorio de Desarrollo y Herramientas.
 
 Dado que necesitamos generar gráficos utilizaremos la herramienta denomina [JFreeChart](http://www.jfree.org/jfreechart/).
 JFreeChart es un marco de software open source para el lenguaje de programación Java, el cual permite la creación de gráficos complejos de forma simple.
@@ -47,6 +41,4 @@ JFreeChart es compatible con una serie de gráficas diferentes, incluyendo cuadr
    	* Imprimir en pdf (imprime la opción elegida de las anteriores)
 
 Para la gestión de la documentación se hace uso de la herramienta [Doxygen](http://www.stack.nl/~dimitri/doxygen/)
-
-Así también para la gestión del proyecto en general se hace uso de la herramienta de gestión de proyectos [Taiga](https://taiga.io/)
 
